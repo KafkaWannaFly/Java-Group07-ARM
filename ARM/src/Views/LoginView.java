@@ -43,9 +43,13 @@ public class LoginView {
 	 */
 	private void setUpLabelButtonEffect(JLabel... jLabels) {
 		for (JLabel label : jLabels) {
+			if(label == null) {
+				continue;
+			}
 			label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-			int delta = 5;
+			int clickDelta = 5;
+			int hoverDelta = 2;
 
 			label.addMouseListener(new MouseInputAdapter() {
 				@Override
@@ -57,14 +61,28 @@ public class LoginView {
 				public void mousePressed(MouseEvent e) {
 					super.mousePressed(e);
 
-					label.setBounds(label.getX(), label.getY() + delta, label.getWidth(), label.getHeight());
+					label.setBounds(label.getX(), label.getY() + clickDelta, label.getWidth(), label.getHeight());
 				}
 
 				@Override
 				public void mouseReleased(MouseEvent e) {
 					super.mouseReleased(e);
 
-					label.setBounds(label.getX(), label.getY() - delta, label.getWidth(), label.getHeight());
+					label.setBounds(label.getX(), label.getY() - clickDelta, label.getWidth(), label.getHeight());
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					super.mouseEntered(e);
+
+					label.setBounds(label.getX(), label.getY() - hoverDelta, label.getWidth(), label.getHeight());
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					super.mouseExited(e);
+
+					label.setBounds(label.getX(), label.getY() + hoverDelta, label.getWidth(), label.getHeight());
 				}
 			});
 		}
