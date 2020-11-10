@@ -17,7 +17,7 @@ public class User {
 
         public User(){}
 
-        public User(String ID, String username, String password, String name, String phoneNumber, String DoB, String gender, String email, String CitizenID, double salary) {
+        public User(String ID, String username, String password, String name, String phoneNumber, String DoB, String gender, String email, String CitizenID, ArrayList<HashMap<String, Integer>> salary) {
                 this.ID = ID;
                 this.username = username;
                 this.password = password;
