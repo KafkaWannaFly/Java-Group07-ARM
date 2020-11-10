@@ -14,6 +14,19 @@ public class User {
 
         public User(){}
 
+        public User(String ID, String username, String password, String name, String phoneNumber, String DoB, String gender, String email, String CitizenID, double salary) {
+                this.ID = ID;
+                this.username = username;
+                this.password = password;
+                this.name = name;
+                this.phoneNumber = phoneNumber;
+                this.DoB = DoB;
+                this.gender = gender;
+                this.email = email;
+                this.CitizenID = CitizenID;
+                this.salary = salary;
+        }
+
         public void InputInformation(){}
 
         //GETTER
