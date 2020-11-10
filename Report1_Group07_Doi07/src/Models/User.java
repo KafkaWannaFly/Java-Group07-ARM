@@ -12,7 +12,7 @@ public class User {
         protected String gender;
         protected String ID;
         protected String email;
-        protected String citizenID;
+        protected String CitizenID;
         protected ArrayList<HashMap<String, Integer>> salary = new ArrayList<>();
 
         public User(){}
@@ -26,7 +26,7 @@ public class User {
                 this.DoB = DoB;
                 this.gender = gender;
                 this.email = email;
-                this.citizenID = CitizenID;
+                this.CitizenID = CitizenID;
                 this.salary = salary;
         }
 
@@ -56,7 +56,7 @@ public class User {
             return email;
         }
         public String getCitizenID(){
-            return citizenID;
+            return CitizenID;
         }
 
         //SETTER

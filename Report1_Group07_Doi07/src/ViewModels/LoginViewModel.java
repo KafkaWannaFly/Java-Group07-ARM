@@ -2,20 +2,17 @@ package ViewModels;
 
 
 /*Import libraries*/
-
 import Models.User;
+import java.util.concurrent.CompletableFuture;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 
@@ -30,27 +27,14 @@ public class LoginViewModel {
 				String hashedPass = org.apache.commons.codec.digest.DigestUtils.sha256Hex(pass);
 				JSONParser parser = new JSONParser();
 				try {
-					JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("UserFormat.json"));
-					;
+					JSONObject jsonObject = (JSONObject)parser.parse(new FileReader("UserFormat.json"));;
 					JSONArray userList = (JSONArray) jsonObject.get("listOfUsers");
 					Gson gson = (new GsonBuilder()).setPrettyPrinting().create();
 					Iterator<JSONObject> iterator = userList.iterator();
 					while (iterator.hasNext()) {
 						JSONObject temp = iterator.next();
-						if (hashedPass.equals(temp.get("password")) && user.equals(temp.get("username"))) {
-							//User u = gson.fromJson(String.valueOf(temp), User.class);
-
-							User u = new User(temp.get("ID").toString(),
-									temp.get("username").toString(),
-									temp.get("password").toString(),
-									temp.get("name").toString(),
-									temp.get("phoneNumber").toString(),
-									temp.get("DoB").toString(),
-									temp.get("gender").toString(),
-									temp.get("email").toString(),
-									temp.get("citizenID").toString(),
-									new ArrayList<>());
-
+						if(hashedPass.equals(temp.get("password")) && user.equals(temp.get("username"))) {
+							User u = gson.fromJson(String.valueOf(temp), User.class);
 							System.out.println(u.getID());
 							return u;
 						}
