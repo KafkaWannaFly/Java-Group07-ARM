@@ -39,11 +39,12 @@ public class LoginView {
 
 	/**
 	 * Add few on-click effects which give button responsive feeling
+	 *
 	 * @param jLabels list of JLabel
 	 */
 	private void setUpLabelButtonEffect(JLabel... jLabels) {
 		for (JLabel label : jLabels) {
-			if(label == null) {
+			if (label == null) {
 				continue;
 			}
 			label.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -90,8 +91,37 @@ public class LoginView {
 
 	//TODO: Notify if fail. Navigate to landing page if success
 	private void onSignInButtonClick() {
-		CompletableFuture<User> completableFuture = loginViewModel.loginAsync(userNameInput.getText(),
-				String.copyValueOf(passwordInput.getPassword()));
+		try {
+			CompletableFuture<User> completableFuture = loginViewModel.loginAsync(userNameInput.getText(),
+					String.copyValueOf(passwordInput.getPassword()));
+
+
+//			JFrame frame = new JFrame();
+//			final JOptionPane optionPane = new JOptionPane(
+//					"The only way to close this dialog is by\n"
+//							+ "pressing one of the following buttons.\n"
+//							+ "Do you understand?",
+//					JOptionPane.QUESTION_MESSAGE,
+//					JOptionPane.YES_NO_OPTION);
+//
+//			final JDialog dialog = new JDialog(frame,
+//					"Click a button",
+//					true);
+//			dialog.setContentPane(optionPane);
+//			dialog.setDefaultCloseOperation(
+//					JDialog.HIDE_ON_CLOSE);
+//
+//			final Toolkit toolkit = Toolkit.getDefaultToolkit();
+//			final Dimension screenSize = toolkit.getScreenSize();
+//			final int x = (screenSize.width - dialog.getWidth()) / 2;
+//			final int y = (screenSize.height - dialog.getHeight()) / 2;
+//			dialog.setLocation(x,y);
+//			dialog.pack();
+//			dialog.setVisible(true);
+
+		} catch (Exception exception) {
+			System.out.println(exception.getMessage());
+		}
 	}
 
 	//TODO: Navigate to Sign-up page
@@ -102,4 +132,5 @@ public class LoginView {
 	public JPanel getMainPanel() {
 		return mainPanel;
 	}
+
 }

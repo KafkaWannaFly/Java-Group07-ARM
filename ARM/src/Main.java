@@ -11,7 +11,8 @@ public class Main {
 		LoginView loginView = new LoginView();
 		mainFrame.add(loginView.getMainPanel());
 
-		mainFrame.pack();
+		mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//mainFrame.setUndecorated(true);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setVisible(true);
 	}
