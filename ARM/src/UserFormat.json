@@ -12,12 +12,12 @@
             "citizenID": "String",
             "salary": [
                 {
-                    "date": "String",
-                    "amount": "int"
+                    "date": 3,
+                    "amount": 4
                 },
                 {
-                    "date": "String",
-                    "amount": "int"
+                    "date": 5,
+                    "amount": 6
                 }
             ]
         },
@@ -33,12 +33,12 @@
             "citizenID": "String",
             "salary": [
                 {
-                    "date": "String",
-                    "amount": "int"
+                    "date": 3,
+                    "amount": 5
                 },
                 {
-                    "date": "String",
-                    "amount": "int"
+                    "date": 6,
+                    "amount": 7
                 }
             ]
         }

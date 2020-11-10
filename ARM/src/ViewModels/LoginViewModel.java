@@ -30,7 +30,7 @@ public class LoginViewModel {
 				String hashedPass = org.apache.commons.codec.digest.DigestUtils.sha256Hex(pass);
 				JSONParser parser = new JSONParser();
 				try {
-					JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("UserFormat.json"));
+					JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("./UserFormat.json"));
 					;
 					JSONArray userList = (JSONArray) jsonObject.get("listOfUsers");
 					Gson gson = (new GsonBuilder()).setPrettyPrinting().create();
@@ -38,18 +38,19 @@ public class LoginViewModel {
 					while (iterator.hasNext()) {
 						JSONObject temp = iterator.next();
 						if (hashedPass.equals(temp.get("password")) && user.equals(temp.get("username"))) {
-							//User u = gson.fromJson(String.valueOf(temp), User.class);
+							System.out.println(String.valueOf(temp));
+							User u = gson.fromJson(String.valueOf(temp), User.class);
 
-							User u = new User(temp.get("ID").toString(),
-									temp.get("username").toString(),
-									temp.get("password").toString(),
-									temp.get("name").toString(),
-									temp.get("phoneNumber").toString(),
-									temp.get("DoB").toString(),
-									temp.get("gender").toString(),
-									temp.get("email").toString(),
-									temp.get("citizenID").toString(),
-									new ArrayList<>());
+//							User u = new User(temp.get("ID").toString(),
+//									temp.get("username").toString(),
+//									temp.get("password").toString(),
+//									temp.get("name").toString(),
+//									temp.get("phoneNumber").toString(),
+//									temp.get("DoB").toString(),
+//									temp.get("gender").toString(),
+//									temp.get("email").toString(),
+//									temp.get("citizenID").toString(),
+//									new ArrayList<>());
 
 							System.out.println(u.getID());
 							return u;
