@@ -1,0 +1,46 @@
+{
+    "listOfUsers":[
+        {
+            "ID": "MAN-123",
+            "username": "String",
+            "password": "7526d001746af48cbdd27c04071a5fcee70603be29f207a667827e1cd2827825",
+            "name": "String",
+            "phoneNumber": "String",
+            "DoB": "String",
+            "gender": "String",
+            "email": "String",
+            "citizenID": "String",
+            "salary": [
+                {
+                    "date": "String",
+                    "amount": "int"
+                },
+                {
+                    "date": "String",
+                    "amount": "int"
+                }
+            ]
+        },
+		{
+            "ID": "MAN-124",
+            "username": "String",
+            "password": "7526d001746af48cbdd27c04071a5fcee70603be29f207a667827e1cd2827825",
+            "name": "String",
+            "phoneNumber": "String",
+            "DoB": "String",
+            "gender": "String",
+            "email": "String",
+            "citizenID": "String",
+            "salary": [
+                {
+                    "date": "String",
+                    "amount": "int"
+                },
+                {
+                    "date": "String",
+                    "amount": "int"
+                }
+            ]
+        }
+    ]
+}
