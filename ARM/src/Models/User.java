@@ -1,5 +1,8 @@
 package Models;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 //TODO: Fill with proper attributes
 public class User {
         protected String username, password;
@@ -10,7 +13,7 @@ public class User {
         protected String ID;
         protected String email;
         protected String CitizenID;
-        protected double salary;
+        protected ArrayList<HashMap<String, Integer>> salary = new ArrayList<>();
 
         public User(){}
 
