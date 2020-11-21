@@ -1,5 +1,7 @@
 package Views;
 
+import Models.User;
+import ViewModels.SignUpViewModel;
 import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 
@@ -9,10 +11,16 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.time.DayOfWeek;
 import java.time.format.DateTimeFormatter;
+import java.util.InputMismatchException;
 import java.util.Locale;
+import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class SignUpView {
+	private SignUpViewModel signUpViewModel = new SignUpViewModel();
+
 	private JPanel root;
 	private JPanel loginLabelGroup;
 	private JPanel form;
@@ -35,6 +43,7 @@ public class SignUpView {
 
 
 	public SignUpView() {
+		scrollPane.setPreferredSize(scrollPane.getPreferredSize());
 
 		DatePickerSettings datePickerSettings = new DatePickerSettings(new Locale("en-us"));
 		datePickerSettings.setAllowEmptyDates(false);
@@ -50,23 +59,91 @@ public class SignUpView {
 		setInvisibleBorderTextFields(usernameInput, passwordInput,
 				fullNameInput, citizenIdInput, phoneInput, emailInput);
 
-		scrollPane.setPreferredSize(scrollPane.getPreferredSize());
+		signUpButton.addMouseListener(new MouseInputAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+
+				try {
+					User user = registerUser();
+					CompletableFuture<Boolean> signUpFuture = signUpViewModel.signUpAsync(user);
+					signUpFuture.thenAccept(new Consumer<Boolean>() {
+						@Override
+						public void accept(Boolean signUpSuccessful) {
+							if(signUpSuccessful) {
+								DialogView.showInfoDialog("Sign Up", "Sign up successfully");
+							} else {
+								DialogView.showInfoDialog("Sign Up", "Sign up fail");
+							}
+						}
+					});
+				} catch (Exception exception) {
+					DialogView.showInfoDialog("Exception", exception.getMessage());
+				}
+			}
+		});
 
 		cancelButton.addMouseListener(new MouseInputAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
 				goToSignIn.apply(null);
-
 			}
 		});
-
 
 	}
 
 	public JComponent getContainer() {
 		return scrollPane;
 	}
+
+	private User registerUser() {
+		User user = new User();
+
+		String username = usernameInput.getText();
+		if(username == null || username.length() < 1) {
+			throw new NullPointerException("Username mustnot be empty");
+		}
+		if(!username.matches("[a-zA-Z0-9]*")) {
+			throw new InputMismatchException("Username must only contain letter or number");
+		}
+
+		String password = String.valueOf(passwordInput.getPassword());
+		if(password.length() < 1) {
+			throw new NullPointerException("Password must not be empty");
+		}
+		if(!password.matches("[a-zA-Z0-9]*")) {
+			throw new InputMismatchException("Password must only contain letter or number");
+		}
+
+		String citizenID = citizenIdInput.getText();
+		if(citizenID == null || citizenID.length() < 1) {
+			throw new NullPointerException("Citizen ID mustn't be empty!");
+		}
+		if(!citizenID.matches("[0-9]+")) {
+			throw new InputMismatchException("Citizen ID must be number");
+		}
+
+		String phone = phoneInput.getText();
+		if(phone == null || phone.length() < 1) {
+			throw new NullPointerException("Phone number mustn't be empty!");
+		}
+		if(!phone.matches("[0-9]+")) {
+			throw new InputMismatchException("Phone number must only be number");
+		}
+
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setName(fullNameInput.getText());
+		user.setCitizenID(citizenID);
+		user.setGender(Objects.requireNonNull(genderConboBox.getSelectedItem()).toString());
+		user.setDoB(datePicker.getDateStringOrEmptyString());
+		user.setEmail(emailInput.getText());
+		user.setPhoneNumber(phone);
+
+		return user;
+	}
+
 
 	private void setInvisibleBorderTextFields(JTextField... textFields) {
 		for (var textField : textFields) {
