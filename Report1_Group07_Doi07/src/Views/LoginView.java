@@ -103,8 +103,8 @@ public class LoginView {
 						infoLabel.setText("Incorrect Username or Password!");
 					}
 					else {
-						infoLabel.setText("Correct Username or Password!");
-						//DialogView.showInfoDialog("Login", "Success!");
+						//infoLabel.setText("Correct Username or Password!");
+						DialogView.showInfoDialog("Login", "Success!");
 					}
 				}
 			});

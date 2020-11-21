@@ -36,7 +36,7 @@
           </component>
         </children>
       </grid>
-      <grid id="7561e" layout-manager="BorderLayout" hgap="0" vgap="0">
+      <grid id="7561e" binding="formContainer" layout-manager="BorderLayout" hgap="0" vgap="0">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -47,7 +47,8 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="e9082" binding="form" layout-manager="GridBagLayout">
+          <grid id="e9082" binding="form" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
             <constraints border-constraint="Center"/>
             <properties>
               <background color="-14931155"/>
@@ -60,7 +61,6 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="20" left="0" bottom="0" right="0" weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
                   <background color="-14931155"/>
@@ -132,7 +132,6 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="20" left="0" bottom="0" right="0" weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
                   <background color="-14931155"/>
@@ -188,7 +187,6 @@
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
                   <background color="-14931155"/>
@@ -233,7 +231,6 @@
               <grid id="1246c" binding="footerGroup" layout-manager="BorderLayout" hgap="0" vgap="0">
                 <constraints>
                   <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
                   <opaque value="false"/>
@@ -270,7 +267,6 @@
               <grid id="e9bce" binding="buttonGroup" layout-manager="FlowLayout" hgap="25" vgap="5" flow-align="1">
                 <constraints>
                   <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag top="0" left="150" bottom="0" right="0" weightx="1.0" weighty="1.0"/>
                 </constraints>
                 <properties>
                   <opaque value="false"/>
@@ -280,7 +276,7 @@
                   <component id="2b7b4" class="javax.swing.JLabel" binding="signUpLabel">
                     <constraints/>
                     <properties>
-                      <font name="Montserrat Medium" size="24"/>
+                      <font name="Montserrat Medium" size="20"/>
                       <foreground color="-1649224"/>
                       <horizontalAlignment value="0"/>
                       <horizontalTextPosition value="0"/>
@@ -292,7 +288,7 @@
                     <properties>
                       <horizontalAlignment value="0"/>
                       <horizontalTextPosition value="0"/>
-                      <icon value="signInButton@3x.png"/>
+                      <icon value="signInButton.png"/>
                       <requestFocusEnabled value="true"/>
                       <text value=""/>
                       <verticalTextPosition value="0"/>
@@ -303,7 +299,6 @@
               <component id="ee303" class="javax.swing.JLabel" binding="infoLabel">
                 <constraints>
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                  <gridbag weightx="0.0" weighty="0.0"/>
                 </constraints>
                 <properties>
                   <foreground color="-4517632"/>

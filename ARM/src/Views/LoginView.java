@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class LoginView {
 	private final LoginViewModel loginViewModel = new LoginViewModel();
@@ -25,6 +26,11 @@ public class LoginView {
 	private JLabel signInLabel;
 	private JLabel signUpLabel;
 	private JLabel infoLabel;
+	private JPanel formContainer;
+
+
+	public Function<Void, Void> onNavigate = null;
+	SignUpView signUpView = new SignUpView();
 
 	public LoginView() {
 		setUpLabelButtonEffect(signInLabel, signUpLabel);
@@ -36,6 +42,43 @@ public class LoginView {
 				onSignInButtonClick();
 			}
 		});
+
+		signUpLabel.addMouseListener(new MouseInputAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+
+				formContainer.remove(form);
+
+				JComponent panel = signUpView.getContainer();
+
+				formContainer.add(panel);
+				formContainer.invalidate();
+				formContainer.validate();
+
+				if(onNavigate != null) {
+					onNavigate.apply(null);
+				}
+			}
+		});
+
+
+		signUpView.goToSignIn = new Function<Void, Void>() {
+			@Override
+			public Void apply(Void unused) {
+				JComponent panel = signUpView.getContainer();
+				formContainer.remove(panel);
+
+				formContainer.add(form);
+				formContainer.invalidate();
+				formContainer.validate();
+
+				if(onNavigate != null) {
+					onNavigate.apply(null);
+				}
+				return null;
+			}
+		};
 	}
 
 	/**
