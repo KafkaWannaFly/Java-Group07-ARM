@@ -13,6 +13,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
@@ -27,34 +28,40 @@ public class LoginViewModel {
 			@Override
 			public User get() {
 				String hashedPass = org.apache.commons.codec.digest.DigestUtils.sha256Hex(pass);
-				JSONParser parser = new JSONParser();
-				try {
-					JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("./UserFormat.json"));
-					;
-					JSONArray userList = (JSONArray) jsonObject.get("listOfUsers");
-					Gson gson = (new GsonBuilder()).setPrettyPrinting().create();
-					Iterator<JSONObject> iterator = userList.iterator();
-					while (iterator.hasNext()) {
-						JSONObject temp = iterator.next();
-						if (hashedPass.equals(temp.get("password")) && user.equals(temp.get("username"))) {
-							System.out.println(String.valueOf(temp));
-							User u = gson.fromJson(String.valueOf(temp), User.class);
-
-//							User u = new User(temp.get("ID").toString(),
-//									temp.get("username").toString(),
-//									temp.get("password").toString(),
-//									temp.get("name").toString(),
-//									temp.get("phoneNumber").toString(),
-//									temp.get("DoB").toString(),
-//									temp.get("gender").toString(),
-//									temp.get("email").toString(),
-//									temp.get("citizenID").toString(),
-//									new ArrayList<>());
-
-							System.out.println(u.getID());
-							return u;
+				ConnectionString connString = new ConnectionString(
+						"mongodb+srv://ManDuy:ManDuy177013@rootcluster.7m3s7.mongodb.net/RestatouilleDB?retryWrites=true&w=majority"
+				);
+				MongoClientSettings settings = MongoClientSettings.builder()
+						.applyConnectionString(connString)
+						.retryWrites(true)
+						.build();
+				MongoClient mongoClient = MongoClients.create(settings);
+				MongoDatabase database = mongoClient.getDatabase("RestatouilleDB");
+				MongoCollection<Document> d = database.getCollection("User");
+				for(Document t : d.find()) {
+					if (usr.compareTo(t.getString("username")) == 0 && hashedPass.compareTo(t.getString("password")) == 0) {
+						String ID, username, password, name, phNumber, DoB, gender, email, citizenID;
+						ArrayList<Salary> Salaries = new ArrayList<Salary>();
+						ID = t.getString("ID");
+						username = t.getString("username");
+						password = t.getString("password");
+						name = t.getString("name");
+						phNumber = t.getString("phoneNumber");
+						DoB = t.getString("DoB");
+						gender = t.getString("gender");
+						email = t.getString("email");
+						citizenID = t.getString("citizenID");
+						ArrayList<Document> salaries = (ArrayList<Document>) t.get("salary");
+						for (Document salary : salaries) {
+							String date = salary.getString("date");
+							String amount = salary.getString("amount");
+							Salary s = new Salary(date, amount);
+							Salaries.add(s);
 						}
+						User u = new User(ID, username, password, name, phNumber, DoB, gender, email, citizenID, Salaries);
 					}
+				}
+				return u;
 
 					return null;
 				} catch (IOException | ParseException e) {
