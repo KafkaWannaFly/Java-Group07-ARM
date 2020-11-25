@@ -11,5 +11,11 @@
     <orderEntry type="library" name="com.google.code.gson:gson:2.8.6" level="project" />
     <orderEntry type="library" name="com.googlecode.json-simple:json-simple:1.1.1" level="project" />
     <orderEntry type="library" name="commons-codec:commons-codec:1.15" level="project" />
+    <orderEntry type="library" name="gson-2.8.6" level="project" />
+    <orderEntry type="library" name="json-simple-1.1.1" level="project" />
+    <orderEntry type="library" name="org.mongodb:mongodb-driver-legacy:4.1.1" level="project" />
+    <orderEntry type="library" name="org.mongodb:mongodb-driver-sync:4.1.1" level="project" />
+    <orderEntry type="library" name="commons-codec-1.15" level="project" />
+    <orderEntry type="library" name="LGoodDatePicker-11.1.0" level="project" />
   </component>
 </module>

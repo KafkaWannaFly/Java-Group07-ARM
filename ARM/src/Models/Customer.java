@@ -1,7 +1,5 @@
 package Models;
 
-import jdk.jfr.Unsigned;
-
 public class Customer {
     private String customerID;
     private String name;

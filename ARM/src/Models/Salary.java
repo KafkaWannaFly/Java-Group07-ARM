@@ -1,4 +1,3 @@
-import java.awt.print.PrinterGraphics;
 package Models;
 
 public class Salary {
