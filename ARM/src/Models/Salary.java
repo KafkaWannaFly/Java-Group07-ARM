@@ -14,8 +14,10 @@ public class Salary extends Document {
         this.amount = amount;
     }
     public Salary(String date, String amount) {
-        this.date = date;
-        this.amount = Integer.parseInt(amount);
+//        this.date = date;
+//        this.amount = Integer.parseInt(amount);
+        this.append("date", date);
+        this.append("amount", amount);
     }
     // Check validation of date (format: mm-yyyy)
     public boolean isValid(String date) {
