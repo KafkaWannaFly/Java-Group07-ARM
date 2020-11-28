@@ -1,6 +1,8 @@
 package Models;
 
-public class Salary {
+import org.bson.Document;
+
+public class Salary extends Document {
     // Attributes
     private String date;
     private Integer amount;

@@ -2,6 +2,7 @@ package ViewModels;
 
 import Models.Salary;
 import Models.User;
+
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
@@ -65,11 +66,11 @@ public class SignUpViewModel {
 								Salaries.add(s);
 							}
 
-							if (idGroup[0].compareTo("MAN") == 0)
+							if (idGroup[0].compareTo("EMP") == 0)
 								count++;
 						}
 
-					user.setID("MAN-" + Integer.toString(count));
+					user.setID("EMP-" + Integer.toString(count));
 
 					Document temp = new Document();
 					temp.append("ID:", user.getID());
@@ -83,9 +84,13 @@ public class SignUpViewModel {
 					temp.append("citizenID:", user.getCitizenID());
 
 					ArrayList<Salary> salary = new ArrayList<>();
+
 					String date = dtf.format(now).toString();
-					String amount = "8000000";
-					Salary s = new Salary(date, amount);
+					String amount = "5000000";
+					Salary s = new Salary();
+					s.append("date", date);
+					s.append("amount", amount);
+
 					salary.add(s);
 					temp.append("salary:", salary);
 
