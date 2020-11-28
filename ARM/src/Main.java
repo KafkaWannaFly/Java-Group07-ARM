@@ -1,10 +1,8 @@
 import Views.LoginView;
-import Views.SignUpView;
-import com.github.lgooddatepicker.components.DatePicker;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.function.Function;
 
 public class Main {

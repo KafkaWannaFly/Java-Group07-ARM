@@ -10,7 +10,6 @@ import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.time.DayOfWeek;
-import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Locale;
 import java.util.Objects;
@@ -146,7 +145,7 @@ public class SignUpView {
 
 
 	private void setInvisibleBorderTextFields(JTextField... textFields) {
-		for (var textField : textFields) {
+		for (JTextField textField : textFields) {
 			textField.setBorder(BorderFactory.createEmptyBorder());
 		}
 	}
