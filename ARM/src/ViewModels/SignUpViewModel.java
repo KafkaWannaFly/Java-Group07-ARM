@@ -73,15 +73,15 @@ public class SignUpViewModel {
 					user.setID("EMP-" + Integer.toString(count));
 
 					Document temp = new Document();
-					temp.append("ID:", user.getID());
-					temp.append("username:", user.getUsername());
-					temp.append("password:", hashedPass);
-					temp.append("name:", user.getName());
-					temp.append("phoneNumber:", user.getPhoneNumber());
-					temp.append("DoB:", user.getDoB());
-					temp.append("append:", user.getGender());
-					temp.append("email:", user.getEmail());
-					temp.append("citizenID:", user.getCitizenID());
+					temp.append("ID", user.getID());
+					temp.append("username", user.getUsername());
+					temp.append("password", hashedPass);
+					temp.append("name", user.getName());
+					temp.append("phoneNumber", user.getPhoneNumber());
+					temp.append("DoB", user.getDoB());
+					temp.append("append", user.getGender());
+					temp.append("email", user.getEmail());
+					temp.append("citizenID", user.getCitizenID());
 
 					ArrayList<Salary> salary = new ArrayList<>();
 
@@ -92,7 +92,7 @@ public class SignUpViewModel {
 					s.append("amount", amount);
 
 					salary.add(s);
-					temp.append("salary:", salary);
+					temp.append("salary", salary);
 
 					d.insertOne(temp);
 
