@@ -1,6 +1,7 @@
 package Models;
 
 public class Items {
+    private String type;
     private String name;
     private Long price;
     private String imgPath;
