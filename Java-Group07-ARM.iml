@@ -21,5 +21,9 @@
     <orderEntry type="library" name="json-simple-1.1.1" level="project" />
     <orderEntry type="library" name="junit-4.10" level="project" />
     <orderEntry type="library" name="LGoodDatePicker-11.1.0" level="project" />
+    <orderEntry type="library" name="mongodb-driver-core-4.1.1" level="project" />
+    <orderEntry type="library" name="mongodb-driver-legacy-4.1.1" level="project" />
+    <orderEntry type="library" name="mongodb-driver-sync-4.1.1" level="project" />
+    <orderEntry type="library" name="bson-4.1.1" level="project" />
   </component>
 </module>

@@ -7,8 +7,11 @@ public class Menu {
     private Bill bill = new Bill();
 
     public Menu(){}
+    public Menu(ArrayList<Items> list) {
+        this.dishList = list;
+    }
 
-    public ArrayList getDishList(){
+    public ArrayList<Items> getDishList(){
         return dishList;
     }
 
