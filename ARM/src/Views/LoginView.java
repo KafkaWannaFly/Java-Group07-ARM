@@ -144,6 +144,12 @@ public class LoginView {
 				public void accept(User user) {
 					if(user == null) {
 						infoLabel.setText("Incorrect Username or Password!");
+						try {
+							Thread.sleep(2000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						infoLabel.setText("");
 					}
 					else {
 						//infoLabel.setText("Correct Username or Password!");

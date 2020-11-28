@@ -6,11 +6,8 @@ package ViewModels;
 import Models.Salary;
 import Models.User;
 import com.mongodb.ConnectionString;
-import com.mongodb.MongoClient;
 import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -34,7 +31,7 @@ public class LoginViewModel {
                             .applyConnectionString(connString)
                             .retryWrites(true)
                             .build();
-                    MongoClient mongoClient = (MongoClient) MongoClients.create(settings);
+                    MongoClient mongoClient = MongoClients.create(settings);
                     MongoDatabase database = mongoClient.getDatabase("RestatouilleDB");
                     MongoCollection<Document> d = database.getCollection("User");
                     User u = null;
@@ -59,9 +56,9 @@ public class LoginViewModel {
                                 Salaries.add(s);
                             }
                             u = new User(ID, username, password, name, phNumber, DoB, gender, email, citizenID, Salaries);
+                            return u;
                         }
                     }
-                    return u;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
