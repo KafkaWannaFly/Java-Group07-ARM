@@ -1,7 +1,6 @@
 package Models;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 //TODO: Fill with proper attributes
 public class User {
@@ -39,6 +38,7 @@ public class User {
 	public String getUsername() {
 		return username;
 	}
+	public String getPassword() {return password;}
 	public String getName() {
 		return name;
 	}
