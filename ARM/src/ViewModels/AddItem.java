@@ -41,7 +41,7 @@ public class AddItem {
                     Document temp = new Document();
                     temp.append("type", type);
                     temp.append("name", items.getName());
-                    temp.append("price", items.getPrice());
+                    temp.append("price", items.getPrice().toString());
                     temp.append("description", des);
                     temp.append("imgPath", items.getImgPath());
 
