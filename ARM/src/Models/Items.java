@@ -8,9 +8,15 @@ public class Items {
     public Items(){}
 
     //SETTER
-    public void setName(){}
-    public void setPrice(){}
-    public void setImgPath(){}
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setPrice(Long price){
+        this.price = price;
+    }
+    public void setImgPath(String imgPath){
+        this.imgPath = imgPath;
+    }
 
     //GETTER
     public String getName(){

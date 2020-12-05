@@ -70,7 +70,16 @@ public class SignUpViewModel {
 								count++;
 						}
 
-					user.setID("EMP-" + Integer.toString(count));
+					String temp2 = "";
+					if (count < 10)
+						temp2 = "00" + Integer.toString(count);
+					else
+						if (count < 100)
+							temp2 = "0" + Integer.toString(count);
+						else
+							temp2 = Integer.toString(count);
+
+					user.setID("EMP-" + temp2);
 
 					Document temp = new Document();
 					temp.append("ID", user.getID());
