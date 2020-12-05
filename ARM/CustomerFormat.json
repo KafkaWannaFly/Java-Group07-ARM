@@ -1,0 +1,16 @@
+{
+  "listOfCustomers":[
+    {
+      "customerID": "CUS-0000123",
+      "name": "String",
+      "phoneNumber": "String",
+      "point": "String"
+    },
+    {
+      "customerID": "CUS-0000124",
+      "name": "String",
+      "phoneNumber": "String",
+      "point": "String"
+    }
+  ]
+}

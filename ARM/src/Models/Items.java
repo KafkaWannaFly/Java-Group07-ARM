@@ -4,6 +4,7 @@ public class Items {
     private String name;
     private Long price;
     private String imgPath;
+    private String type, description;
 
     public Items(){}
 
@@ -18,6 +19,14 @@ public class Items {
         this.imgPath = imgPath;
     }
 
+    public void setType(String type){
+        this.type = type;
+    }
+
+    public void setDescription(String description){
+        this.description = description;
+    }
+
     //GETTER
     public String getName(){
         return name;
@@ -27,5 +36,11 @@ public class Items {
     }
     public String getImgPath(){
         return imgPath;
+    }
+    public String getType(){
+        return type;
+    }
+    public String getDescription() {
+        return description;
     }
 }

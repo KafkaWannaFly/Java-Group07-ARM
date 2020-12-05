@@ -1,0 +1,11 @@
+{
+  "listOfItems":[
+    {
+      "type": "Item_1",
+      "name": "Item_name",
+      "price": "100000",
+      "description": "String",
+      "imgPath": "String"
+    }
+  ]
+  }

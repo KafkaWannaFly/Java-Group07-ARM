@@ -15,13 +15,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class AddItem {
     //TODO: Gửi yêu cầu đăng ký
     //Nếu thành công thì trả về True, không thì False
-    public static CompletableFuture<Boolean> addItemAsync(Items items, String type, String des) {
+    public static CompletableFuture<Boolean> addItemAsync(Items items) {
         return CompletableFuture.supplyAsync(new Supplier<Boolean>() {
             @Override
             public Boolean get() {
@@ -39,10 +38,10 @@ public class AddItem {
 
 
                     Document temp = new Document();
-                    temp.append("type", type);
+                    temp.append("type", items.getType());
                     temp.append("name", items.getName());
                     temp.append("price", items.getPrice().toString());
-                    temp.append("description", des);
+                    temp.append("description", items.getDescription());
                     temp.append("imgPath", items.getImgPath());
 
                     d.insertOne(temp);
@@ -71,6 +70,12 @@ public class AddItem {
         imgPath="NaN";
         price= Long.valueOf(15000);
 
+        i.setName(name);
+        i.setType(type);
+        i.setPrice(price);
+        i.setDescription(description);
+        i.setImgPath(imgPath);
+
         /*
         System.out.print("Type: ");
         type = scanner.next();
@@ -94,17 +99,11 @@ public class AddItem {
          */
 
         try {
-            CompletableFuture<Boolean> addItemFuture = addItemAsync(i, type, description);
-            addItemFuture.thenAccept(new Consumer<Boolean>() {
-                @Override
-                public void accept(Boolean signUpSuccessful) {
-                    if(signUpSuccessful) {
-                        System.out.println("Add item successfully");
-                    } else {
-                        System.out.println("Add item fail");
-                    }
-                }
-            });
+            CompletableFuture<Boolean> addItemFuture = addItemAsync(i);
+            if (addItemFuture.get())
+                System.out.println("Add item successfully");
+            else
+                System.out.println("Add failed");
         } catch (Exception exception) {
             System.out.println("Exception " + exception.getMessage());
         }
