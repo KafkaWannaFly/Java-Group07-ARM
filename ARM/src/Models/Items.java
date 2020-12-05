@@ -6,7 +6,6 @@ public class Items {
     private Long price;
     private String description;
     private String imgPath;
-    private String type, description;
 
     //CONSTRUCTOR
     public Items(){}
