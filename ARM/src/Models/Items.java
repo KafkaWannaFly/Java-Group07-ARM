@@ -21,7 +21,9 @@ public class Items {
     public void setType(String type) { this.type = type; }
     public void setName(String name){ this.name = name; }
     public void setPrice(Long price){ this.price = price; }
-    public void setImgPath(){}
+    public void setImgPath(String imgPath){
+        this.imgPath = imgPath;
+    }
     public void setDescription(String description) { this.description = description; }
     public void replace(Items i) {
         type = i.getType();
