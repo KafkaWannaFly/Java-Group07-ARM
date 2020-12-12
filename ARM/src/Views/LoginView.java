@@ -12,7 +12,6 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class LoginView {
-	private final LoginViewModel loginViewModel = new LoginViewModel();
 	private JPanel mainPanel;
 	private JLabel picture;
 	private JPanel userNameGroup;
@@ -28,9 +27,11 @@ public class LoginView {
 	private JLabel infoLabel;
 	private JPanel formContainer;
 
+	private LoginViewModel loginViewModel = new LoginViewModel();
+	private SignUpView signUpView = new SignUpView();
 
-	public Function<Void, Void> onNavigate = null;
-	SignUpView signUpView = new SignUpView();
+	private Function<Void, Void> onNavigate;
+	private Function<User, Void> onLoginSuccess;
 
 	public LoginView() {
 		setUpLabelButtonEffect(signInLabel, signUpLabel);
@@ -56,7 +57,7 @@ public class LoginView {
 				formContainer.invalidate();
 				formContainer.validate();
 
-				if(onNavigate != null) {
+				if (onNavigate != null) {
 					onNavigate.apply(null);
 				}
 			}
@@ -73,7 +74,7 @@ public class LoginView {
 				formContainer.invalidate();
 				formContainer.validate();
 
-				if(onNavigate != null) {
+				if (onNavigate != null) {
 					onNavigate.apply(null);
 				}
 				return null;
@@ -133,7 +134,6 @@ public class LoginView {
 		}
 	}
 
-	//TODO: Notify if fail. Navigate to landing page if success
 	private void onSignInButtonClick() {
 		try {
 			CompletableFuture<User> completableFuture = loginViewModel.loginAsync(userNameInput.getText(),
@@ -142,7 +142,7 @@ public class LoginView {
 			completableFuture.thenAccept(new Consumer<User>() {
 				@Override
 				public void accept(User user) {
-					if(user == null) {
+					if (user == null) {
 						infoLabel.setText("Incorrect Username or Password!");
 						try {
 							Thread.sleep(2000);
@@ -151,9 +151,9 @@ public class LoginView {
 						}
 						infoLabel.setText("");
 					}
-					else {
-						//infoLabel.setText("Correct Username or Password!");
+					else { //Login Success
 						DialogView.showInfoDialog("Login", "Success!");
+						onLoginSuccess.apply(user);
 					}
 				}
 			});
@@ -163,9 +163,12 @@ public class LoginView {
 		}
 	}
 
-	//TODO: Navigate to Sign-up page
-	private void onSignUpButtonClick() {
-		DialogView.showInfoDialog("Sign-up", "Sign-up button press");
+	public void setOnLoginSuccess(Function<User, Void> onLoginSuccess) {
+		this.onLoginSuccess = onLoginSuccess;
+	}
+
+	public void setOnNavigate(Function<Void, Void> onNavigate) {
+		this.onNavigate = onNavigate;
 	}
 
 	public JPanel getMainPanel() {

@@ -89,7 +89,7 @@
                           <caretColor color="-1"/>
                           <columns value="15"/>
                           <font size="28"/>
-                          <foreground color="-1"/>
+                          <foreground color="-16777216"/>
                           <horizontalAlignment value="2"/>
                           <inheritsPopupMenu value="false"/>
                           <margin top="3" left="8" bottom="3" right="8"/>

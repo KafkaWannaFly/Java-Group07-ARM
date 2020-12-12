@@ -1,4 +1,7 @@
+import Models.User;
 import Views.LoginView;
+import Views.ShellView;
+import com.formdev.flatlaf.FlatIntelliJLaf;
 
 import javax.swing.*;
 import java.awt.event.ComponentAdapter;
@@ -8,42 +11,54 @@ import java.util.function.Function;
 public class Main {
 
 	public static void main(String[] args) {
-		JFrame mainFrame = new JFrame();
-		mainFrame.setTitle("ARM");
+		try {
+			UIManager.setLookAndFeel(new FlatIntelliJLaf());
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
+
+		App app = new App();
+		app.setTitle("ARM");
+
 
 		LoginView loginView = new LoginView();
+		app.add(loginView.getMainPanel());
 
-//		DatePicker datePicker = new DatePicker();
-//		signUpView.getDobPanel().add(datePicker);
-
-
-		mainFrame.add(loginView.getMainPanel());
-
-		loginView.onNavigate = new Function<Void, Void>() {
+		loginView.setOnNavigate(new Function<Void, Void>() {
 			@Override
 			public Void apply(Void unused) {
-				mainFrame.setExtendedState(JFrame.NORMAL);
-				mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				app.refresh();
 				return null;
 			}
-		};
+		});
 
-		// Resize window when user press 'Restore Down'
-		mainFrame.addComponentListener(new ComponentAdapter() {
+
+		ShellView shellView = new ShellView();
+
+		loginView.setOnLoginSuccess(new Function<User, Void>() {
 			@Override
-			public void componentResized(ComponentEvent e) {
-				super.componentResized(e);
-				if(mainFrame.getExtendedState() == JFrame.NORMAL) {
-					mainFrame.pack();
-				}
+			public Void apply(User user) {
+				app.remove(loginView.getMainPanel());
+
+				app.add(shellView.getRootPane());
+				app.refresh();
+				return null;
+			}
+		});
+
+		shellView.setOnDOMChanged(new Function<Void, Void>() {
+			@Override
+			public Void apply(Void unused) {
+				app.refresh();
+				return null;
 			}
 		});
 
 		// Maximize window when start the program
-		mainFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		app.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		//mainFrame.setUndecorated(true);
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setVisible(true);
+		app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		app.setVisible(true);
 	}
 }
