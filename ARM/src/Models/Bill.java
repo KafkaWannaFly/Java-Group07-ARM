@@ -1,9 +1,8 @@
 package Models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 
 public class Bill {
 
@@ -42,11 +41,23 @@ public class Bill {
 	}
 
 	//These two function will use on getBill()
+	public HashMap<String, Integer> getDishesWithNumber(){
+		return dishesWithNumber;
+	}
+
+	public HashMap<String, Long> getDishesWithPrice(){
+		return dishesWithPrice;
+	}
+
 	public String getBillID() {
 		return billID;
 	}
 
 	public String getCustomerID() {
 		return this.customerID;
+	}
+
+	public Long getTotalPrice(){
+		return totalPrice;
 	}
 }
