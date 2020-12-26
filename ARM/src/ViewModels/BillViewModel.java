@@ -1,10 +1,7 @@
 package ViewModels;
 
 import Models.Bill;
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
+import Models.ModelManager;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
@@ -21,18 +18,10 @@ public class BillViewModel {
         return CompletableFuture.supplyAsync(new Supplier<Boolean>() {
             @Override
             public Boolean get() {
+                MongoDatabase database = ModelManager.getInstance().getDatabase();
+                
                 try{
-                    ConnectionString connString = new ConnectionString(
-                            "mongodb+srv://ManDuy:ManDuy177013@rootcluster.7m3s7.mongodb.net/RestatouilleDB?retryWrites=true&w=majority"
-                    );
-                    MongoClientSettings settings = MongoClientSettings.builder()
-                            .applyConnectionString(connString)
-                            .retryWrites(true)
-                            .build();
-                    MongoClient mongoClient = MongoClients.create(settings);
-                    MongoDatabase database = mongoClient.getDatabase("RestatouilleDB");
                     MongoCollection<Document> d = database.getCollection("Bill");
-
 
                     Document temp = new Document();
                     temp.append("ID", bill.getBillID());
