@@ -8,6 +8,7 @@ import javax.swing.event.MouseInputAdapter;
 import javax.swing.plaf.FontUIResource;
 import javax.swing.text.StyleContext;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
@@ -43,6 +44,22 @@ public class LoginView {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
+				onSignInButtonClick();
+			}
+		});
+
+		// Handle enter button
+		userNameInput.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				onSignInButtonClick();
+			}
+		});
+
+		// Handle enter button
+		passwordInput.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				onSignInButtonClick();
 			}
 		});

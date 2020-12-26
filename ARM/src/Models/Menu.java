@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Menu {
     private ArrayList<Item> dishList = new ArrayList<>();
-    private Bill bill = new Bill();
+//    private Bill bill = new Bill();
 
     public Menu(){}
     public Menu(ArrayList<Item> list) {
@@ -15,7 +15,7 @@ public class Menu {
         return dishList;
     }
 
-    public Bill ExportBill(){
-        return bill;
-    }
+//    public Bill ExportBill(){
+//        return bill;
+//    }
 }

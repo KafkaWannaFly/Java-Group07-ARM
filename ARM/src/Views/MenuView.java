@@ -1,6 +1,7 @@
 package Views;
 
 import Models.Item;
+import ViewModels.BillViewModel;
 import ViewModels.MenuViewModel;
 
 import javax.swing.*;
@@ -17,6 +18,8 @@ import java.util.function.Supplier;
 
 public class MenuView {
 	MenuViewModel menuViewModel = new MenuViewModel();
+	BillViewModel billViewModel = new BillViewModel();
+
 	private JPanel rootPane;
 	private JTextField textField1;
 	private JButton searchButton;
@@ -66,11 +69,15 @@ public class MenuView {
 
 	}
 
+	/**
+	 * Create a Bill object then submit to database
+	 * @return
+	 */
 	private MouseInputListener confirmButtonListener() {
 		return new MouseInputAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				super.mouseClicked(e);
+
 			}
 		};
 	}
@@ -141,11 +148,6 @@ public class MenuView {
 	}
 
 	private void setupOrderButtonHandler() {
-//		while (actualItemAmount < 0) {
-//			System.out.println("setupOrderButtonHandler with itemsView size = " + actualItemAmount);
-//
-//		}
-
 		System.out.println("setupOrderButtonHandler with itemsView size = " + actualItemAmount);
 
 		for (ItemView itemView : itemViews) {

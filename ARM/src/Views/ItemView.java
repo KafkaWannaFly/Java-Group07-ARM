@@ -6,13 +6,9 @@ import ViewModels.ItemViewModel;
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
-import javax.swing.plaf.FontUIResource;
-import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.util.Arrays;
-import java.util.Locale;
 import java.util.function.Consumer;
 import java.util.function.Function;
 

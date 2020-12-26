@@ -23,10 +23,10 @@ public class Main {
 
 
 		LoginView loginView = new LoginView();
-//		app.add(loginView.getMainPanel());
+		app.add(loginView.getMainPanel());
 
-		MenuView menuView = new MenuView();
-		app.add(menuView.getRootPane());
+//		MenuView menuView = new MenuView();
+//		app.add(menuView.getRootPane());
 
 		loginView.setOnNavigate(new Function<Void, Void>() {
 			@Override
