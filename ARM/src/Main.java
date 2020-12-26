@@ -1,5 +1,6 @@
 import Models.User;
 import Views.LoginView;
+import Views.MenuView;
 import Views.ShellView;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 
@@ -22,7 +23,10 @@ public class Main {
 
 
 		LoginView loginView = new LoginView();
-		app.add(loginView.getMainPanel());
+//		app.add(loginView.getMainPanel());
+
+		MenuView menuView = new MenuView();
+		app.add(menuView.getRootPane());
 
 		loginView.setOnNavigate(new Function<Void, Void>() {
 			@Override
@@ -54,11 +58,14 @@ public class Main {
 			}
 		});
 
+
 		// Maximize window when start the program
 		app.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		//mainFrame.setUndecorated(true);
 		app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		app.setVisible(true);
+
+		app.refresh();
 	}
 }

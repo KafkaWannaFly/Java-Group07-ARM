@@ -1,6 +1,6 @@
 package Models;
 
-public class Items {
+public class Item {
     private String type;
     private String name;
     private Long price;
@@ -8,13 +8,21 @@ public class Items {
     private String imgPath;
 
     //CONSTRUCTOR
-    public Items(){}
+    public Item(){}
 
-    public Items(String type, String name, String price, String description) {
+    public Item(String type, String name, String price, String description) {
         this.type = type;
         this.name = name;
         this.price = Long.parseLong(price);
         this.description = description;
+    }
+
+    public Item(String type, String name, String price, String description, String imgPath) {
+        this.type = type;
+        this.name = name;
+        this.price = Long.parseLong(price);
+        this.description = description;
+        this.imgPath = imgPath;
     }
 
     //SETTER
@@ -25,7 +33,7 @@ public class Items {
         this.imgPath = imgPath;
     }
     public void setDescription(String description) { this.description = description; }
-    public void replace(Items i) {
+    public void replace(Item i) {
         type = i.getType();
         name = i.getName();
         price = i.getPrice();
@@ -47,5 +55,17 @@ public class Items {
     }
     public String getDescription() {
         return description;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Item{");
+        sb.append("type='").append(type).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", price=").append(price);
+        sb.append(", description='").append(description).append('\'');
+        sb.append(", imgPath='").append(imgPath).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

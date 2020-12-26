@@ -1,7 +1,7 @@
 package ViewModels;
 
 
-import Models.Items;
+import Models.Item;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
@@ -20,7 +20,7 @@ import java.util.function.Supplier;
 public class AddItem {
     //TODO: Gửi yêu cầu đăng ký
     //Nếu thành công thì trả về True, không thì False
-    public static CompletableFuture<Boolean> addItemAsync(Items items) {
+    public static CompletableFuture<Boolean> addItemAsync(Item item) {
         return CompletableFuture.supplyAsync(new Supplier<Boolean>() {
             @Override
             public Boolean get() {
@@ -38,11 +38,11 @@ public class AddItem {
 
 
                     Document temp = new Document();
-                    temp.append("type", items.getType());
-                    temp.append("name", items.getName());
-                    temp.append("price", items.getPrice().toString());
-                    temp.append("description", items.getDescription());
-                    temp.append("imgPath", items.getImgPath());
+                    temp.append("type", item.getType());
+                    temp.append("name", item.getName());
+                    temp.append("price", item.getPrice().toString());
+                    temp.append("description", item.getDescription());
+                    temp.append("imgPath", item.getImgPath());
 
                     d.insertOne(temp);
 
@@ -59,7 +59,7 @@ public class AddItem {
     public static void main(String[] args) throws IOException {
         Scanner scanner =  new Scanner(System.in);
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        Items i = new Items();
+        Item i = new Item();
 
         String type, name, description, imgPath;
         Long price;

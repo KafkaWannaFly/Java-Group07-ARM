@@ -46,4 +46,5 @@ public class DialogView {
 		dialog.pack();
 		dialog.setVisible(true);
 	}
+
 }

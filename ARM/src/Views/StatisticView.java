@@ -1,6 +1,7 @@
 package Views;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class StatisticView {
 	private JPanel rootPane;
@@ -8,4 +9,5 @@ public class StatisticView {
 	public JPanel getRootPane() {
 		return rootPane;
 	}
+
 }

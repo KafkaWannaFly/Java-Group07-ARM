@@ -1,7 +1,7 @@
 package ViewModels;
 
 import Models.Bill;
-import Models.Items;
+import Models.Item;
 import Models.Menu;
 import Models.ModelManager;
 import com.mongodb.client.MongoCollection;
@@ -19,25 +19,30 @@ public class MenuViewModel {
 	/**
 	 * Get some items from database
 	 * @param amount amount needed. If want to get all, {@code amount = -1}
-	 * @return Items
+	 * @return Item
 	 */
-	public CompletableFuture<ArrayList<Items>> getItemsListAsync(int amount) {
-		return CompletableFuture.supplyAsync(new Supplier<ArrayList<Items>>() {
+	public CompletableFuture<ArrayList<Item>> getItemsListAsync(int amount) {
+		return CompletableFuture.supplyAsync(new Supplier<ArrayList<Item>>() {
+			long _amount = amount;
 			@Override
-			public ArrayList<Items> get() {
+			public ArrayList<Item> get() {
 				MongoDatabase db = ModelManager.getInstance().getDatabase();
+				MongoCollection<Document> itemCollection = db.getCollection("Item");
 				int count = 0;
+				if(this._amount < 0) {
+					this._amount = itemCollection.countDocuments();
+				}
 				try {
-					MongoCollection<Document> doc = db.getCollection("Item");
-					ArrayList<Items> items = new ArrayList<>();
-					for (Document t : doc.find()) {
-						if(count == amount - 1)
+					ArrayList<Item> items = new ArrayList<>();
+					for (Document t : itemCollection.find()) {
+						if(count == this._amount - 1)
 							break;
-						Items i = new Items(
+						Item i = new Item(
 								t.getString("type"),
 								t.getString("name"),
 								t.getString("price"),
-								t.getString("description")
+								t.getString("description"),
+								t.getString("imgPath")
 						);
 						items.add(i);
 						count++;
@@ -52,7 +57,7 @@ public class MenuViewModel {
 		});
 	}
 
-	public CompletableFuture<Items> addItemAsync(Items item) {
+	public CompletableFuture<Item> addItemAsync(Item item) {
 		return null;
 	}
 
@@ -63,12 +68,12 @@ public class MenuViewModel {
 	 * @return Item vừa sửa xong. Nếu k sửa được thì trả về null
 	 * @throws Exception Thông tin lỗi dọc đường (Tên đã tồn tại,...)
 	 */
-	public CompletableFuture<Items> updateItem(String name, Items newValue) throws Exception {
-		return CompletableFuture.supplyAsync(new Supplier<Items>() {
+	public CompletableFuture<Item> updateItem(String name, Item newValue) throws Exception {
+		return CompletableFuture.supplyAsync(new Supplier<Item>() {
 			@Override
-			public Items get() {
+			public Item get() {
 				try {
-					for (Items i : menu.getDishList()) {
+					for (Item i : menu.getDishList()) {
 						if (i.getName().compareTo(name) == 0)
 							i.replace(newValue);
 					}
@@ -81,15 +86,15 @@ public class MenuViewModel {
 		});
 	}
 	/** Xóa món ăn thì trả về boolean, xóa được hay không thôi hen?*/
-	public CompletableFuture<Items> deleteItem(String name) {
-		return CompletableFuture.supplyAsync(new Supplier<Items>() {
+	public CompletableFuture<Item> deleteItem(String name) {
+		return CompletableFuture.supplyAsync(new Supplier<Item>() {
 			@Override
-			public Items get() {
+			public Item get() {
 				try {
 					MongoDatabase db =  ModelManager.getInstance().getDatabase();
 					MongoCollection<Document> doc = db.getCollection("Item");
 					Document temp = doc.findOneAndDelete(Filters.eq("name", name));
-					Items deleteItem = new Items(temp.getString("type"),
+					Item deleteItem = new Item(temp.getString("type"),
 							temp.getString("name"),
 							temp.getString("price"),
 							temp.getString("description"));
@@ -102,13 +107,13 @@ public class MenuViewModel {
 		});
 	}
 
-	public CompletableFuture<Items> getItem(String name) {
-		return CompletableFuture.supplyAsync(new Supplier<Items>() {
+	public CompletableFuture<Item> getItem(String name) {
+		return CompletableFuture.supplyAsync(new Supplier<Item>() {
 			@Override
-			public Items get() {
+			public Item get() {
 				try {
-					ArrayList<Items> list = menu.getDishList();
-					for(Items i : list) {
+					ArrayList<Item> list = menu.getDishList();
+					for(Item i : list) {
 						if(i.getName().compareTo(name) == 0)
 							return i;
 					}

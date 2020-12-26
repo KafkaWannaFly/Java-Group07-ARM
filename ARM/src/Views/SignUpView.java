@@ -6,7 +6,10 @@ import com.github.lgooddatepicker.components.DatePicker;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.MouseInputAdapter;
+import javax.swing.plaf.FontUIResource;
+import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.time.DayOfWeek;
@@ -69,9 +72,10 @@ public class SignUpView {
 					signUpFuture.thenAccept(new Consumer<Boolean>() {
 						@Override
 						public void accept(Boolean signUpSuccessful) {
-							if(signUpSuccessful) {
+							if (signUpSuccessful) {
 								DialogView.showInfoDialog("Sign Up", "Sign up successfully");
-							} else {
+							}
+							else {
 								DialogView.showInfoDialog("Sign Up", "Sign up fail");
 							}
 						}
@@ -100,34 +104,34 @@ public class SignUpView {
 		User user = new User();
 
 		String username = usernameInput.getText();
-		if(username == null || username.length() < 1) {
+		if (username == null || username.length() < 1) {
 			throw new NullPointerException("Username mustnot be empty");
 		}
-		if(!username.matches("[a-zA-Z0-9]*")) {
+		if (!username.matches("[a-zA-Z0-9]*")) {
 			throw new InputMismatchException("Username must only contain letter or number");
 		}
 
 		String password = String.valueOf(passwordInput.getPassword());
-		if(password.length() < 1) {
+		if (password.length() < 1) {
 			throw new NullPointerException("Password must not be empty");
 		}
-		if(!password.matches("[a-zA-Z0-9]*")) {
+		if (!password.matches("[a-zA-Z0-9]*")) {
 			throw new InputMismatchException("Password must only contain letter or number");
 		}
 
 		String citizenID = citizenIdInput.getText();
-		if(citizenID == null || citizenID.length() < 1) {
+		if (citizenID == null || citizenID.length() < 1) {
 			throw new NullPointerException("Citizen ID mustn't be empty!");
 		}
-		if(!citizenID.matches("[0-9]+")) {
+		if (!citizenID.matches("[0-9]+")) {
 			throw new InputMismatchException("Citizen ID must be number");
 		}
 
 		String phone = phoneInput.getText();
-		if(phone == null || phone.length() < 1) {
+		if (phone == null || phone.length() < 1) {
 			throw new NullPointerException("Phone number mustn't be empty!");
 		}
-		if(!phone.matches("[0-9]+")) {
+		if (!phone.matches("[0-9]+")) {
 			throw new InputMismatchException("Phone number must only be number");
 		}
 

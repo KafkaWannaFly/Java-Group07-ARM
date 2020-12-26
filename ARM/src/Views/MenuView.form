@@ -35,13 +35,20 @@
               <text value="Search"/>
             </properties>
           </component>
-          <component id="bde5b" class="javax.swing.JLabel">
+          <component id="1a87a" class="javax.swing.JComboBox" binding="sortOptions">
             <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <labelFor value=""/>
-              <text value="Sort Icon"/>
+              <font name="Cabin SemiBold"/>
+              <model>
+                <item value="Type"/>
+                <item value="Ascending Name"/>
+                <item value="Ascending Price"/>
+                <item value="Descending Name"/>
+                <item value="Descending Price"/>
+              </model>
+              <toolTipText value="Sorting options"/>
             </properties>
           </component>
         </children>
@@ -52,16 +59,16 @@
         <properties/>
         <border type="none"/>
         <children>
-          <splitpane id="8c23">
+          <splitpane id="8c23" binding="splitPane">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <resizeWeight value="0.7"/>
+              <resizeWeight value="0.8"/>
             </properties>
             <border type="none"/>
             <children>
-              <scrollpane id="65868">
+              <scrollpane id="65868" binding="itemsScrollPane">
                 <constraints>
                   <splitpane position="left"/>
                 </constraints>
@@ -70,8 +77,7 @@
                 </properties>
                 <border type="none"/>
                 <children>
-                  <grid id="8cc5a" binding="itemsPane" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                    <margin top="0" left="0" bottom="0" right="5"/>
+                  <grid id="8cc5a" binding="itemsPane" layout-manager="GridBagLayout">
                     <constraints/>
                     <properties/>
                     <border type="none"/>
@@ -79,7 +85,7 @@
                   </grid>
                 </children>
               </scrollpane>
-              <grid id="5a577" binding="billPane" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="5a577" binding="billPane" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="5" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <splitpane position="right"/>
@@ -89,21 +95,24 @@
                 <children>
                   <component id="a2ec1" class="javax.swing.JButton" binding="confirmButton" default-binding="true">
                     <constraints>
-                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                      <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
                       <text value="Confirm"/>
                     </properties>
                   </component>
-                  <scrollpane id="9a3d0">
+                  <scrollpane id="9a3d0" binding="billItemsScrollPane">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <horizontalScrollBarPolicy value="30"/>
+                      <verticalScrollBarPolicy value="20"/>
+                    </properties>
                     <border type="none"/>
                     <children>
-                      <grid id="bd35c" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                        <margin top="0" left="0" bottom="0" right="0"/>
+                      <grid id="bd35c" binding="billItemsPane" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="5" left="0" bottom="5" right="0"/>
                         <constraints/>
                         <properties/>
                         <border type="none"/>
@@ -111,6 +120,33 @@
                       </grid>
                     </children>
                   </scrollpane>
+                  <grid id="3a1c7" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                    <margin top="10" left="5" bottom="0" right="5"/>
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="90e57" class="javax.swing.JLabel" binding="totalPrice">
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <font name="ITC Avant Garde Std Md" size="18"/>
+                          <text value="0"/>
+                        </properties>
+                      </component>
+                      <component id="b72e1" class="javax.swing.JLabel">
+                        <constraints>
+                          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="2" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties>
+                          <text value="VND"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
                 </children>
               </grid>
             </children>

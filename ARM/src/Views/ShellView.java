@@ -2,9 +2,12 @@ package Views;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
+import javax.swing.plaf.FontUIResource;
+import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.function.Function;
 
 public class ShellView {
@@ -35,6 +38,7 @@ public class ShellView {
 	private Color selectedBackgroundColor = new Color(5, 131, 242);
 
 	public ShellView() {
+		// Side bar navigation
 		Component[] components = categoryPane.getComponents();
 		for (int i = 0; i < components.length; i++) {
 			JLabel label = (JLabel) components[i];
@@ -99,7 +103,7 @@ public class ShellView {
 						}
 
 //						subViewPane.validate();
-						if(onDOMChanged != null) {
+						if (onDOMChanged != null) {
 							onDOMChanged.apply(null);
 						}
 					}
@@ -120,9 +124,12 @@ public class ShellView {
 
 	public void setOnDOMChanged(Function<Void, Void> onDOMChanged) {
 		this.onDOMChanged = onDOMChanged;
+
+		menuView.setOnDOMChanged(onDOMChanged);
 	}
 
 	public JPanel getRootPane() {
 		return rootPane;
 	}
+
 }

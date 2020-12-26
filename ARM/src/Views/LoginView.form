@@ -86,7 +86,7 @@
                       <component id="fcf61" class="javax.swing.JTextField" binding="userNameInput">
                         <constraints border-constraint="West"/>
                         <properties>
-                          <caretColor color="-1"/>
+                          <caretColor color="-16415758"/>
                           <columns value="15"/>
                           <font size="28"/>
                           <foreground color="-16777216"/>

@@ -1,6 +1,7 @@
 package Views;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class UserAccountView {
 	private JPanel rootPane;
@@ -8,4 +9,5 @@ public class UserAccountView {
 	public JPanel getRootPane() {
 		return rootPane;
 	}
+
 }

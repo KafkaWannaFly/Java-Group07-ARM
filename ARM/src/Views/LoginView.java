@@ -5,8 +5,11 @@ import ViewModels.LoginViewModel;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
+import javax.swing.plaf.FontUIResource;
+import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 import java.util.function.Function;
