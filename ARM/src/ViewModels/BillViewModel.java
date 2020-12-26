@@ -19,7 +19,7 @@ public class BillViewModel {
             @Override
             public Boolean get() {
                 MongoDatabase database = ModelManager.getInstance().getDatabase();
-                
+
                 try{
                     MongoCollection<Document> d = database.getCollection("Bill");
 

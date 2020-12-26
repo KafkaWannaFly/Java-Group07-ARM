@@ -40,6 +40,10 @@ public class Bill {
 		totalPrice = price + Math.round(VAT*price);
 	}
 
+	public Bill() {
+
+	}
+
 	//These two function will use on getBill()
 	public HashMap<String, Integer> getDishesWithNumber(){
 		return dishesWithNumber;

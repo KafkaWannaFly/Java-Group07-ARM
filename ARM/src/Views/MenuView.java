@@ -83,7 +83,7 @@ public class MenuView {
 
 				// Update total price
 				long total = 0;
-				for (var biv : billItemViews) {
+				for (BillItemView biv : billItemViews) {
 					total += biv.getTotal();
 				}
 				totalPrice.setText(String.valueOf(total));
@@ -129,7 +129,7 @@ public class MenuView {
 
 				// Update total price
 				long total = 0;
-				for (var biv : billItemViews) {
+				for (BillItemView biv : billItemViews) {
 					total += biv.getTotal();
 				}
 				totalPrice.setText(String.valueOf(total));
@@ -148,7 +148,7 @@ public class MenuView {
 
 		System.out.println("setupOrderButtonHandler with itemsView size = " + actualItemAmount);
 
-		for (var itemView : itemViews) {
+		for (ItemView itemView : itemViews) {
 			itemView.setOnOrderButtonClick(handleOrderButtonClick());
 		}
 	}
@@ -193,7 +193,7 @@ public class MenuView {
 						Collections.sort(items, (o1, o2) -> o1.getName().compareTo(o2.getName()));
 						Collections.sort(items, (o1, o2) -> o1.getType().compareTo(o2.getType()));
 
-						for (var item : items) {
+						for (Item item : items) {
 							try {
 //								System.out.println(item);
 

@@ -2,12 +2,9 @@ package Views;
 
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
-import javax.swing.plaf.FontUIResource;
-import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.function.Function;
 
 public class ShellView {
@@ -59,7 +56,7 @@ public class ShellView {
 		onCategoryLabelSelected = new Function<JLabel, Void>() {
 			@Override
 			public Void apply(JLabel jLabel) {
-				for (var label : categoryLabels) {
+				for (JLabel label : categoryLabels) {
 					if (label != jLabel) {
 						label.setBackground(defaultBackgroundColor);
 						label.setForeground(defaultFontColor);
@@ -74,7 +71,7 @@ public class ShellView {
 						}
 //						subViewPane.invalidate();
 
-						String tittle = label.getText().strip();
+						String tittle = label.getText();
 						switch (tittle) {
 
 							case "Menu": {
@@ -112,7 +109,7 @@ public class ShellView {
 			}
 		};
 
-		for (var label : categoryLabels) {
+		for (JLabel label : categoryLabels) {
 			label.addMouseListener(new MouseInputAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
