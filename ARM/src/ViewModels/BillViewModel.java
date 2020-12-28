@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 public class BillViewModel {
     //TODO: Gửi yêu cầu đăng ký
     //Nếu thành công thì trả về True, không thì False
-    public static CompletableFuture<Boolean> addItemAsync(Bill bill) {
+    public CompletableFuture<Boolean> purchaseBill(Bill bill) {
         return CompletableFuture.supplyAsync(new Supplier<Boolean>() {
             @Override
             public Boolean get() {

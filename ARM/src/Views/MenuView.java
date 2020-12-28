@@ -1,5 +1,6 @@
 package Views;
 
+import Models.Bill;
 import Models.Item;
 import ViewModels.BillViewModel;
 import ViewModels.MenuViewModel;
@@ -9,8 +10,10 @@ import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -43,7 +46,7 @@ public class MenuView {
 	public MenuView() {
 //		GridLayout gridBagLayout = new GridLayout(0,1, 0, 0);
 //		billItemsPane.setLayout(new FlowLayout(FlowLayout.LEFT));
-		billItemsPane.setLayout(new GridLayout(0, 1));
+		billItemsPane.setLayout(new BoxLayout(billItemsPane, BoxLayout.Y_AXIS));
 
 		int scrollSpeed = 16;
 		itemsScrollPane.getVerticalScrollBar().setUnitIncrement(scrollSpeed);
@@ -67,17 +70,78 @@ public class MenuView {
 					}
 				});
 
+		confirmButton.addMouseListener(this.confirmButtonListener());
 	}
 
 	/**
 	 * Create a Bill object then submit to database
+	 *
 	 * @return
 	 */
 	private MouseInputListener confirmButtonListener() {
 		return new MouseInputAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				try {
+					int confirmOption = JOptionPane.showConfirmDialog(rootPane,
+							"Are you sure about that (´･ω･`)?",
+							"Confirm Order",
+							JOptionPane.OK_CANCEL_OPTION);
 
+					if (confirmOption == JOptionPane.OK_OPTION) {
+						// Check current order
+						if (billItemViews.size() <= 0) {
+							JOptionPane.showMessageDialog(rootPane,
+									"Nothing to buy ಠ_ಠ");
+							return;
+						}
+
+						// Transfer all BillItem into Bill
+						HashMap<String, Integer> dishesWithNumber = new HashMap<>();
+						HashMap<String, Long> dishesWithPrice = new HashMap<>();
+
+						for (var biv : billItemViews) {
+							AbstractMap.SimpleEntry<Item, Integer> itemAmountPair = biv.getItemAmountPair();
+
+							Item item = itemAmountPair.getKey();
+							Integer amount = itemAmountPair.getValue();
+
+							if(amount > 0) {
+								dishesWithNumber.put(item.getName(), amount);
+								dishesWithPrice.put(item.getName(), item.getPrice());
+							}
+						}
+
+						Bill bill = new Bill(dishesWithNumber, dishesWithPrice, null);
+						if(bill.getTotalPrice() == 0) {
+							JOptionPane.showMessageDialog(rootPane,
+									"Nothing to buy ಠ_ಠ");
+							return;
+						}
+
+						billViewModel.purchaseBill(bill)
+								.thenAccept(new Consumer<Boolean>() {
+									@Override
+									public void accept(Boolean canPurchase) {
+										if (canPurchase) {
+											JOptionPane.showMessageDialog(rootPane,
+													"Order successfully ヽ(✿ﾟ▽ﾟ)ノ",
+													"Order",
+													JOptionPane.INFORMATION_MESSAGE);
+										}
+										else {
+											JOptionPane.showMessageDialog(rootPane,
+													"Order fail 〒▽〒",
+													"Order",
+													JOptionPane.INFORMATION_MESSAGE);
+										}
+									}
+								});
+					}
+
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
 			}
 		};
 	}
