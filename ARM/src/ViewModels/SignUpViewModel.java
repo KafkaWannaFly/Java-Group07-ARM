@@ -32,27 +32,10 @@ public class SignUpViewModel {
 
 					User u = null;
 					for (Document t : d.find()) {
-							String ID, username, password, name, phNumber, DoB, gender, email, citizenID;
-							ArrayList<Salary> Salaries = new ArrayList<Salary>();
+							String ID;
 							ID = t.getString("ID");
 
 							String[] idGroup = ID.split("-");
-
-							username = t.getString("username");
-							password = t.getString("password");
-							name = t.getString("name");
-							phNumber = t.getString("phoneNumber");
-							DoB = t.getString("DoB");
-							gender = t.getString("gender");
-							email = t.getString("email");
-							citizenID = t.getString("citizenID");
-							ArrayList<Document> salaries = (ArrayList<Document>) t.get("salary");
-							for (Document salary : salaries) {
-								String date = salary.getString("date");
-								String amount = salary.getString("amount");
-								Salary s = new Salary(date, amount);
-								Salaries.add(s);
-							}
 
 							if (idGroup[0].compareTo("EMP") == 0)
 								count++;
