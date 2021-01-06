@@ -12,6 +12,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import static com.mongodb.client.model.Filters.*;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -23,23 +24,21 @@ public class UserViewModel {
                 try {
                     MongoDatabase db = ModelManager.getInstance().getDatabase();
                     MongoCollection<Document> userCollection = db.getCollection("User");
-                    Bson filter = Filters.eq("id", newUser.getID());
-                    FindIterable<Document> documentList = userCollection.find(filter);
-                    if(documentList == null) {
+                    Document specificUser = userCollection.find(eq("ID", newUser.getID())).first();
+
+                    if (specificUser == null) {
                         System.out.println("Can't find user");
+                    } else {
+                        updatePassword(newUser.getPassword(), userCollection, specificUser);
+                        updateName(newUser.getName(), userCollection, specificUser);
+                        updatePhoneNumber(newUser.getPhoneNumber(), userCollection, specificUser);
+                        updateGender(newUser.getGender(), userCollection, specificUser);
+                        updateDoB(newUser.getDoB(), userCollection, specificUser);
+                        updateEmail(newUser.getEmail(), userCollection, specificUser);
                     }
-                    else {
-                        for(Document d : documentList) {
-                            updatePassword(newUser.getPassword(), userCollection, d);
-                            updateName(newUser.getName(), userCollection, d);
-                            updatePhoneNumber(newUser.getPhoneNumber(), userCollection, d);
-                            updateGender(newUser.getGender(), userCollection, d);
-                            updateDoB(newUser.getDoB(), userCollection, d);
-                            updateEmail(newUser.getEmail(), userCollection, d);
-                        }
-                        return true;
-                    }
-                } catch(MongoException e) {
+                    return true;
+                }
+                catch(MongoException e) {
                     e.printStackTrace();
                 }
                 return false;
@@ -48,7 +47,7 @@ public class UserViewModel {
     }
 
     public void updatePassword(String newPassword, MongoCollection<Document> userCollection, Document document) throws MongoException {
-        if(newPassword.isEmpty()) {
+        if(newPassword.isEmpty() || newPassword.isBlank()) {
             return;
         }
         else {
