@@ -157,7 +157,7 @@ public class LoginView {
 	private void onSignInButtonClick() {
 		try {
 			CompletableFuture<User> completableFuture = loginViewModel.loginAsync(userNameInput.getText(),
-					String.copyValueOf(passwordInput.getPassword())); //Deserteagle1801
+					String.copyValueOf(passwordInput.getPassword()));
 
 			completableFuture.thenAccept(new Consumer<User>() {
 				@Override

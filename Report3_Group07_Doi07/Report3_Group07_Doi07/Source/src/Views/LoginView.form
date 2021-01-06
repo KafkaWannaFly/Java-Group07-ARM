@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Views.LoginView">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="18" y="21" width="1268" height="800"/>
+    </constraints>
+    <properties>
+      <background color="-14931155"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="ffbcb" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="325" height="516"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-14931155"/>
+          <opaque value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="23c1d" class="javax.swing.JLabel" binding="picture">
+            <constraints border-constraint="South"/>
+            <properties>
+              <horizontalAlignment value="2"/>
+              <horizontalTextPosition value="2"/>
+              <icon value="totoro.png"/>
+              <inheritsPopupMenu value="false"/>
+              <text value=""/>
+              <verticalAlignment value="3"/>
+              <verticalTextPosition value="3"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="7561e" binding="formContainer" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <autoscrolls value="true"/>
+          <background color="-14931155"/>
+          <opaque value="false"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="e9082" binding="form" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints border-constraint="Center"/>
+            <properties>
+              <background color="-14931155"/>
+              <foreground color="-1"/>
+              <opaque value="false"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="97ad2" binding="userNameGroup" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-14931155"/>
+                  <opaque value="false"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="2e8ac" layout-manager="BorderLayout" hgap="0" vgap="0">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <autoscrolls value="false"/>
+                      <background color="-14931155"/>
+                      <doubleBuffered value="false"/>
+                      <enabled value="true"/>
+                      <foreground color="-14931155"/>
+                      <nextFocusableComponent value=""/>
+                      <opaque value="false"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="fcf61" class="javax.swing.JTextField" binding="userNameInput">
+                        <constraints border-constraint="West"/>
+                        <properties>
+                          <caretColor color="-16415758"/>
+                          <columns value="15"/>
+                          <font size="28"/>
+                          <foreground color="-16777216"/>
+                          <horizontalAlignment value="2"/>
+                          <inheritsPopupMenu value="false"/>
+                          <margin top="3" left="8" bottom="3" right="8"/>
+                          <opaque value="false"/>
+                          <selectedTextColor color="-1"/>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                      <component id="95706" class="javax.swing.JLabel">
+                        <constraints border-constraint="Center"/>
+                        <properties>
+                          <horizontalAlignment value="0"/>
+                          <icon value="userAccountIcon@3x.png"/>
+                          <iconTextGap value="0"/>
+                          <labelFor value="fcf61"/>
+                          <requestFocusEnabled value="false"/>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <component id="26fc" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="8" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Courier New" size="16"/>
+                      <foreground color="-1"/>
+                      <horizontalAlignment value="2"/>
+                      <horizontalTextPosition value="2"/>
+                      <labelFor value="fcf61"/>
+                      <text value="USERNAME"/>
+                      <verticalAlignment value="3"/>
+                      <verticalTextPosition value="3"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="b7b03" binding="passwordGroup" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-14931155"/>
+                  <opaque value="false"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <grid id="301b4" layout-manager="BorderLayout" hgap="0" vgap="0">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <opaque value="false"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <component id="71d43" class="javax.swing.JPasswordField" binding="passwordInput">
+                        <constraints border-constraint="Center"/>
+                        <properties>
+                          <background color="-14931155"/>
+                          <caretColor color="-1"/>
+                          <columns value="15"/>
+                          <font size="28"/>
+                          <foreground color="-1"/>
+                          <horizontalAlignment value="2"/>
+                          <margin top="3" left="8" bottom="3" right="8"/>
+                          <opaque value="false"/>
+                          <selectedTextColor color="-14931155"/>
+                        </properties>
+                      </component>
+                      <component id="58921" class="javax.swing.JLabel">
+                        <constraints border-constraint="East"/>
+                        <properties>
+                          <icon value="passwordIcon@3x.png"/>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <component id="bd184" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Courier New" size="16"/>
+                      <foreground color="-1"/>
+                      <text value="PASSWORD"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="9d714" binding="loginLabelGroup" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <background color="-14931155"/>
+                  <opaque value="false"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="8acf" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <font name="Montserrat Light" size="26"/>
+                      <foreground color="-1"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Application for Restaurant Management"/>
+                      <verifyInputWhenFocusTarget value="true"/>
+                      <verticalAlignment value="3"/>
+                      <verticalTextPosition value="0"/>
+                    </properties>
+                  </component>
+                  <component id="e5413" class="javax.swing.JLabel">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                    <properties>
+                      <autoscrolls value="true"/>
+                      <focusable value="true"/>
+                      <font name="Rokkitt SemiBold" size="96" style="1"/>
+                      <foreground color="-1649224"/>
+                      <horizontalAlignment value="0"/>
+                      <horizontalTextPosition value="0"/>
+                      <text value="ARM"/>
+                      <verifyInputWhenFocusTarget value="true"/>
+                      <verticalAlignment value="0"/>
+                      <verticalTextPosition value="0"/>
+                      <visible value="true"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="1246c" binding="footerGroup" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <opaque value="false"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="7a41" class="javax.swing.JLabel">
+                    <constraints border-constraint="Center"/>
+                    <properties>
+                      <focusTraversalPolicyProvider value="true"/>
+                      <font name="Maitree" size="24"/>
+                      <foreground color="-1"/>
+                      <horizontalAlignment value="0"/>
+                      <horizontalTextPosition value="0"/>
+                      <text value="HCMUS - GROUP 07"/>
+                      <verticalAlignment value="3"/>
+                      <verticalTextPosition value="0"/>
+                    </properties>
+                  </component>
+                  <component id="dfe6b" class="javax.swing.JLabel">
+                    <constraints border-constraint="South"/>
+                    <properties>
+                      <focusTraversalPolicyProvider value="true"/>
+                      <font name="Montserrat Light" size="16"/>
+                      <foreground color="-1"/>
+                      <horizontalAlignment value="0"/>
+                      <text value="Đinh Hoàng Dương | Dương Trần Mẫn Duy | Huỳnh Đức Lê"/>
+                      <verticalAlignment value="0"/>
+                      <verticalTextPosition value="0"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="e9bce" binding="buttonGroup" layout-manager="FlowLayout" hgap="25" vgap="5" flow-align="1">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <opaque value="false"/>
+                </properties>
+                <border type="none"/>
+                <children>
+                  <component id="2b7b4" class="javax.swing.JLabel" binding="signUpLabel">
+                    <constraints/>
+                    <properties>
+                      <font name="Montserrat Medium" size="20"/>
+                      <foreground color="-1649224"/>
+                      <horizontalAlignment value="0"/>
+                      <horizontalTextPosition value="0"/>
+                      <text value="&lt;html&gt;&#10;&lt;u&gt;SIGN UP&lt;/u&gt;&#10;&lt;/html&gt;"/>
+                    </properties>
+                  </component>
+                  <component id="f4997" class="javax.swing.JLabel" binding="signInLabel">
+                    <constraints/>
+                    <properties>
+                      <horizontalAlignment value="0"/>
+                      <horizontalTextPosition value="0"/>
+                      <icon value="signInButton.png"/>
+                      <requestFocusEnabled value="true"/>
+                      <text value=""/>
+                      <verticalTextPosition value="0"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <component id="ee303" class="javax.swing.JLabel" binding="infoLabel">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <foreground color="-4517632"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

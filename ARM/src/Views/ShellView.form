@@ -22,8 +22,10 @@
               <background color="-1"/>
               <font name="Candara" size="24" style="1"/>
               <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
               <opaque value="true"/>
-              <text value="  Menu  "/>
+              <text value="Menu"/>
             </properties>
           </component>
           <component id="de5a" class="javax.swing.JLabel" binding="membershipLabel">
@@ -35,8 +37,10 @@
               <background color="-1"/>
               <font name="Candara" size="24" style="1"/>
               <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
               <opaque value="true"/>
-              <text value="  Membership  "/>
+              <text value="Membership"/>
             </properties>
           </component>
           <component id="8b2e0" class="javax.swing.JLabel" binding="statisticLabel">
@@ -48,8 +52,10 @@
               <background color="-1"/>
               <font name="Candara" size="24" style="1"/>
               <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
               <opaque value="true"/>
-              <text value="  Statistic  "/>
+              <text value="Statistic"/>
             </properties>
           </component>
           <component id="a1e70" class="javax.swing.JLabel" binding="employeesLabel">
@@ -61,8 +67,10 @@
               <background color="-1"/>
               <font name="Candara" size="24" style="1"/>
               <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
               <opaque value="true"/>
-              <text value="  Employees  "/>
+              <text value="Employees"/>
             </properties>
           </component>
           <component id="e240f" class="javax.swing.JLabel" binding="userAccountLabel">
@@ -74,8 +82,10 @@
               <background color="-1"/>
               <font name="Candara" size="24" style="1"/>
               <foreground color="-16777216"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
               <opaque value="true"/>
-              <text value="  User Account  "/>
+              <text value="User Account"/>
             </properties>
           </component>
         </children>

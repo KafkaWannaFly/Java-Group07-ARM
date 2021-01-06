@@ -69,8 +69,8 @@ public class ItemView {
 					text.setEditable(isEditable);
 				}
 			} catch (Exception exception) {
-				System.out.println(exception.getMessage());
-				System.out.println("This exception is made on purpose. We shouldn't worry about :)))");
+//				System.out.println(exception.getMessage());
+//				System.out.println("This exception is made on purpose. We shouldn't worry about :)))");
 			}
 
 		}
