@@ -31,11 +31,21 @@ public class SignUpViewModel {
 					int count = 1;
 
 					User u = null;
+
+					String check_user_name;
+
 					for (Document t : d.find()) {
 							String ID;
 							ID = t.getString("ID");
+							
+							check_user_name = t.getString("username");
+							if (check_user_name.compareTo(user.getUsername()) == 0)
+								return false;
 
 							String[] idGroup = ID.split("-");
+
+							if (Integer.parseInt(idGroup[1]) != count)
+								break;
 
 							if (idGroup[0].compareTo("EMP") == 0)
 								count++;
