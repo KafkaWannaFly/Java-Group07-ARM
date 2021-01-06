@@ -44,7 +44,7 @@ public class UserAccountView {
 
 		idLabel.setText(user.getID());
 		usernameLabel.setText(user.getUsername());
-		passwordTF.setText("");
+		passwordTF.setText(user.getPassword());
 		fullnameTF.setText(user.getName());
 
 		if(user.getGender() != null) {
@@ -96,6 +96,21 @@ public class UserAccountView {
 				}
 
 				try {
+					if(fullnameTF.getText().isEmpty()) {
+						throw new Exception("Name is empty!");
+					}
+					if(passwordTF.getText().isEmpty()) {
+						throw  new Exception("Password is empty!");
+					}
+					if(!phoneTF.getText().matches("[0-9]+")) {
+						throw new Exception("Phone is not numbers");
+					}
+
+
+					if(passwordTF.getText() == currentUser.getPassword()) {
+						currentUser.setPassword("");
+					}
+
 					currentUser.setName(fullnameTF.getText());
 					currentUser.setPassword(passwordTF.getText());
 					currentUser.setGender((String)genderComboBox.getSelectedItem());
@@ -124,6 +139,10 @@ public class UserAccountView {
 							});
 				} catch (Exception exception) {
 					exception.printStackTrace();
+					JOptionPane.showMessageDialog(rootPane,
+							exception.getMessage(),
+							"Update",
+							JOptionPane.ERROR_MESSAGE);
 				}
 
 			}
@@ -151,10 +170,8 @@ public class UserAccountView {
 	private void setEditable(boolean isEditable) {
 		passwordTF.setEditable(isEditable);
 		fullnameTF.setEditable(isEditable);
-		genderComboBox.setEditable(isEditable);
 		genderComboBox.setEnabled(isEditable);
 		datePicker.setEnabled(isEditable);
-		citizenIdTF.setEditable(isEditable);
 		phoneTF.setEditable(isEditable);
 		emailTF.setEditable(isEditable);
 
