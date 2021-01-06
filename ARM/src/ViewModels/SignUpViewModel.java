@@ -88,7 +88,7 @@ public class SignUpViewModel {
 					temp.append("name", user.getName());
 					temp.append("phoneNumber", user.getPhoneNumber());
 					temp.append("DoB", user.getDoB());
-					temp.append("append", user.getGender());
+					temp.append("gender", user.getGender());
 					temp.append("email", user.getEmail());
 					temp.append("citizenID", user.getCitizenID());
 
