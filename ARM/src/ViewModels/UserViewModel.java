@@ -52,10 +52,11 @@ public class UserViewModel {
             return;
         }
         else {
+            String hashedPassword = org.apache.commons.codec.digest.DigestUtils.sha256Hex(newPassword);
             BasicDBObject newDocument = new BasicDBObject();
-            newDocument.put("password", newPassword);
+            newDocument.put("password", hashedPassword);
             BasicDBObject query = new BasicDBObject();
-            query.put("gender", document.getString("gender"));
+            query.put("password", document.getString("password"));
             BasicDBObject updateObject = new BasicDBObject();
             updateObject.put("$set", newDocument);
 
@@ -70,7 +71,7 @@ public class UserViewModel {
             BasicDBObject newDocument = new BasicDBObject();
             newDocument.put("name", newName);
             BasicDBObject query = new BasicDBObject();
-            query.put("gender", document.getString("gender"));
+            query.put("name", document.getString("name"));
             BasicDBObject updateObject = new BasicDBObject();
             updateObject.put("$set", newDocument);
 
@@ -86,7 +87,7 @@ public class UserViewModel {
             BasicDBObject newDocument = new BasicDBObject();
             newDocument.put("phoneNumber", newPhoneNumber);
             BasicDBObject query = new BasicDBObject();
-            query.put("gender", document.getString("gender"));
+            query.put("phoneNumber", document.getString("phoneNumber"));
             BasicDBObject updateObject = new BasicDBObject();
             updateObject.put("$set", newDocument);
 
@@ -102,7 +103,7 @@ public class UserViewModel {
             BasicDBObject newDocument = new BasicDBObject();
             newDocument.put("DoB", newDoB);
             BasicDBObject query = new BasicDBObject();
-            query.put("gender", document.getString("gender"));
+            query.put("DoB", document.getString("DoB"));
             BasicDBObject updateObject = new BasicDBObject();
             updateObject.put("$set", newDocument);
 
