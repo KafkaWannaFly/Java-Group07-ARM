@@ -34,6 +34,8 @@ public class UserAccountView {
 	private JButton editButton;
 	private JButton updateButton;
 
+	private boolean isEditting = false;
+
 	private User currentUser;
 	private UserViewModel userViewModel = new UserViewModel();
 
@@ -63,8 +65,10 @@ public class UserAccountView {
 		datePickerSettings.setAllowKeyboardEditing(false);
 		datePickerSettings.setFirstDayOfWeek(DayOfWeek.SUNDAY);
 		datePickerSettings.setFormatForDatesCommonEra("dd-MM-yyyy");
+//		datePickerSettings.setFontCalendarDateLabels(idLabel.getFont());
 
 		datePicker.setSettings(datePickerSettings);
+		datePicker.setFont(idLabel.getFont());
 		datePicker.setDate(LocalDate.parse(user.getDoB()));
 
 		birthPane.add(datePicker);
@@ -73,7 +77,10 @@ public class UserAccountView {
 		phoneTF.setText(user.getPhoneNumber());
 		emailTF.setText(user.getEmail());
 
+		this.setEditable(false);
+
 		updateButton.addMouseListener(this.updateUserHandler());
+		editButton.addMouseListener(this.editButtonHandler());
 	}
 
 	public JPanel getRootPane() {
@@ -84,11 +91,13 @@ public class UserAccountView {
 		return new MouseInputAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(!isEditting) {
+					return;
+				}
+
 				try {
 					currentUser.setName(fullnameTF.getText());
-					if(!passwordTF.getText().isEmpty()) {
-						currentUser.setPassword(passwordTF.getText());
-					}
+					currentUser.setPassword(passwordTF.getText());
 					currentUser.setGender((String)genderComboBox.getSelectedItem());
 					currentUser.setDoB(datePicker.getDateStringOrEmptyString());
 					currentUser.setCitizenID(citizenIdTF.getText());
@@ -119,5 +128,36 @@ public class UserAccountView {
 
 			}
 		};
+	}
+
+	private MouseInputListener editButtonHandler() {
+		return new MouseInputAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				isEditting = !isEditting;
+				setEditable(isEditting);
+
+				if(isEditting) {
+					editButton.setText("Cancel");
+				}
+				else {
+					editButton.setText("Edit");
+				}
+
+			}
+		};
+	}
+
+	private void setEditable(boolean isEditable) {
+		passwordTF.setEditable(isEditable);
+		fullnameTF.setEditable(isEditable);
+		genderComboBox.setEditable(isEditable);
+		genderComboBox.setEnabled(isEditable);
+		datePicker.setEnabled(isEditable);
+		citizenIdTF.setEditable(isEditable);
+		phoneTF.setEditable(isEditable);
+		emailTF.setEditable(isEditable);
+
+		updateButton.setEnabled(isEditable);
 	}
 }
