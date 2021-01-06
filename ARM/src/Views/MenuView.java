@@ -100,7 +100,7 @@ public class MenuView {
 						HashMap<String, Integer> dishesWithNumber = new HashMap<>();
 						HashMap<String, Long> dishesWithPrice = new HashMap<>();
 
-						for (var biv : billItemViews) {
+						for (BillItemView biv : billItemViews) {
 							AbstractMap.SimpleEntry<Item, Integer> itemAmountPair = biv.getItemAmountPair();
 
 							Item item = itemAmountPair.getKey();

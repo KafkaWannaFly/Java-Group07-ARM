@@ -1,12 +1,8 @@
 package ViewModels;
 
+import Models.ModelManager;
 import Models.Salary;
 import Models.User;
-
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientSettings;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
@@ -29,15 +25,7 @@ public class SignUpViewModel {
 					LocalDateTime now = LocalDateTime.now();
 
 					String hashedPass = org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPassword());
-					ConnectionString connString = new ConnectionString(
-							"mongodb+srv://ManDuy:ManDuy177013@rootcluster.7m3s7.mongodb.net/RestatouilleDB?retryWrites=true&w=majority"
-					);
-					MongoClientSettings settings = MongoClientSettings.builder()
-							.applyConnectionString(connString)
-							.retryWrites(true)
-							.build();
-					MongoClient mongoClient = MongoClients.create(settings);
-					MongoDatabase database = mongoClient.getDatabase("RestatouilleDB");
+					MongoDatabase database = ModelManager.getInstance().getDatabase();
 					MongoCollection<Document> d = database.getCollection("User");
 
 					int count = 1;
@@ -88,7 +76,7 @@ public class SignUpViewModel {
 					temp.append("name", user.getName());
 					temp.append("phoneNumber", user.getPhoneNumber());
 					temp.append("DoB", user.getDoB());
-					temp.append("append", user.getGender());
+					temp.append("gender", user.getGender());
 					temp.append("email", user.getEmail());
 					temp.append("citizenID", user.getCitizenID());
 

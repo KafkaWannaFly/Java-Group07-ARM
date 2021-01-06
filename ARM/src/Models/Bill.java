@@ -1,10 +1,12 @@
 package Models;
 
+import org.bson.Document;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
-public class Bill {
+public class Bill extends Document {
 
 	/* Để tránh việc đọc lại Menu database để lấy giá tiền từng món,
 	danh sách các món đã đặt sẽ gồm t
