@@ -1,8 +1,14 @@
 package Models;
 
+import java.nio.charset.StandardCharsets;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
-//TODO: Fill with proper attributes
 public class User {
 	protected String username, password;
 	protected String name;
@@ -31,6 +37,7 @@ public class User {
 	}
 
 	public void InputInformation() {
+
 	}
 
 	//GETTER
@@ -60,6 +67,7 @@ public class User {
 	public String getDoB() {
 		return DoB;
 	}
+
 	public Integer getTotal() {
 		int sum = 0;
 		for(Salary s : salary) {

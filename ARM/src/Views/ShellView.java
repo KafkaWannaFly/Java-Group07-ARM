@@ -1,5 +1,7 @@
 package Views;
 
+import Models.User;
+
 import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
@@ -17,11 +19,12 @@ public class ShellView {
 	private JLabel userAccountLabel;
 	private JPanel subViewPane;
 
-	private MenuView menuView = new MenuView();
-	private MembershipView membershipView = new MembershipView();
-	private StatisticView statisticView = new StatisticView();
-	private EmployeesView employeesView = new EmployeesView();
-	private UserAccountView userAccountView = new UserAccountView();
+	private User currentUser;
+	private MenuView menuView;
+	private MembershipView membershipView;
+	private StatisticView statisticView;
+	private EmployeesView employeesView;
+	private UserAccountView userAccountView;
 
 	private ArrayList<JLabel> categoryLabels = new ArrayList<>();
 
@@ -35,21 +38,38 @@ public class ShellView {
 	private Color selectedBackgroundColor = new Color(5, 131, 242);
 
 	public ShellView() {
-		// Side bar navigation
-		Component[] components = categoryPane.getComponents();
-		for (int i = 0; i < components.length; i++) {
-			JLabel label = (JLabel) components[i];
-			if (label != null) {
-				categoryLabels.add(label);
+
+	}
+
+	public ShellView(User user) {
+		try {
+			currentUser = user;
+			menuView = new MenuView(user);
+			membershipView = new MembershipView();
+
+			employeesView = new EmployeesView(user);
+			statisticView = new StatisticView(user);
+			userAccountView = new UserAccountView(user);
+
+			// Side bar navigation
+			Component[] components = categoryPane.getComponents();
+			for (int i = 0; i < components.length; i++) {
+				JLabel label = (JLabel) components[i];
+				if (label != null) {
+					categoryLabels.add(label);
+				}
 			}
+
+			// MenuView will be landing page
+			menuLabel.setBackground(selectedBackgroundColor);
+			menuLabel.setForeground(selectedFontColor);
+			subViewPane.add(menuView.getRootPane());
+
+			this.setCategoryLabelsMouseListener();
+		} catch (Exception exception) {
+			exception.printStackTrace();
 		}
 
-		this.setCategoryLabelsMouseListener();
-
-		// MenuView will be landing page
-		menuLabel.setBackground(selectedBackgroundColor);
-		menuLabel.setForeground(selectedFontColor);
-		subViewPane.add(menuView.getRootPane());
 	}
 
 	private void setCategoryLabelsMouseListener() {
@@ -75,27 +95,32 @@ public class ShellView {
 						switch (tittle) {
 
 							case "Menu": {
-								subViewPane.add(menuView.getRootPane());
+								if (menuView != null)
+									subViewPane.add(menuView.getRootPane());
 								break;
 							}
 							case "Membership": {
-								subViewPane.add(membershipView.getRootPane());
+								if (membershipView != null)
+									subViewPane.add(membershipView.getRootPane());
 								break;
 							}
 							case "Statistic": {
-								subViewPane.add(statisticView.getRootPane());
+								if (statisticView != null)
+									subViewPane.add(statisticView.getRootPane());
 								break;
 							}
 							case "Employees": {
-								subViewPane.add(employeesView.getRootPane());
+								if (employeesView != null)
+									subViewPane.add(employeesView.getRootPane());
 								break;
 							}
 							case "User Account": {
-								subViewPane.add(userAccountView.getRootPane());
+								if (userAccountView != null)
+									subViewPane.add(userAccountView.getRootPane());
 								break;
 							}
 							default: {
-								subViewPane.add(menuView.getRootPane());
+
 							}
 						}
 

@@ -21,12 +21,8 @@ public class Main {
 		App app = new App();
 		app.setTitle("ARM");
 
-
 		LoginView loginView = new LoginView();
 		app.add(loginView.getMainPanel());
-
-//		MenuView menuView = new MenuView();
-//		app.add(menuView.getRootPane());
 
 		loginView.setOnNavigate(new Function<Void, Void>() {
 			@Override
@@ -36,28 +32,31 @@ public class Main {
 			}
 		});
 
-
-		ShellView shellView = new ShellView();
-
 		loginView.setOnLoginSuccess(new Function<User, Void>() {
 			@Override
 			public Void apply(User user) {
-				app.remove(loginView.getMainPanel());
+				try {
+					System.out.println("Login success: " + user);
+					app.remove(loginView.getMainPanel());
 
-				app.add(shellView.getRootPane());
-				app.refresh();
+					ShellView shellView = new ShellView(user);
+					shellView.setOnDOMChanged(new Function<Void, Void>() {
+						@Override
+						public Void apply(Void unused) {
+							app.refresh();
+							return null;
+						}
+					});
+
+					app.add(shellView.getRootPane());
+					app.refresh();
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
+
 				return null;
 			}
 		});
-
-		shellView.setOnDOMChanged(new Function<Void, Void>() {
-			@Override
-			public Void apply(Void unused) {
-				app.refresh();
-				return null;
-			}
-		});
-
 
 		// Maximize window when start the program
 		app.setExtendedState(JFrame.MAXIMIZED_BOTH);

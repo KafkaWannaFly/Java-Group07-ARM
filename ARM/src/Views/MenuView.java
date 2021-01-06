@@ -2,6 +2,7 @@ package Views;
 
 import Models.Bill;
 import Models.Item;
+import Models.User;
 import ViewModels.BillViewModel;
 import ViewModels.MenuViewModel;
 
@@ -20,6 +21,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class MenuView {
+	User currentUser;
 	MenuViewModel menuViewModel = new MenuViewModel();
 	BillViewModel billViewModel = new BillViewModel();
 
@@ -73,6 +75,10 @@ public class MenuView {
 		confirmButton.addMouseListener(this.confirmButtonListener());
 	}
 
+	public MenuView(User user) {
+		this();
+		this.currentUser = user;
+	}
 	/**
 	 * Create a Bill object then submit to database
 	 *
