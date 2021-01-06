@@ -11,6 +11,38 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
+class objectInBill extends Document{
+    private String name;
+    private Integer amount;
+    private Long totalPrice;
+
+    public objectInBill(){}
+
+    public objectInBill(String name, Integer amount, Long totalPrice){
+        this.name = name;
+        this.amount = amount;
+        this.totalPrice = totalPrice;
+    }
+
+    public objectInBill(String name, String amount, String totalPrice){
+        this.append("Name", name);
+        this.append("Amount", amount);
+        this.append("Total", totalPrice);
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public Integer getAmount(){
+        return amount;
+    }
+
+    public Long getTotalPrice(){
+        return totalPrice;
+    }
+}
+
 public class BillViewModel {
     //TODO: Gửi yêu cầu đăng ký
     //Nếu thành công thì trả về True, không thì False
@@ -30,12 +62,20 @@ public class BillViewModel {
 
                     List<String> key = new ArrayList<>(bill.getDishesWithNumber().keySet());
 
+                    ArrayList<objectInBill> list = new ArrayList<>();
+
                     for (String item: key){
-                        temp.append("Name", item);
-                        temp.append("Number", bill.getDishesWithNumber().get(item).toString());
+                        objectInBill obj = new objectInBill();
+
+                        obj.append("Name", item);
+                        obj.append("Amount", bill.getDishesWithNumber().get(item).toString());
                         Long tmp_price = bill.getDishesWithPrice().get(item) * bill.getDishesWithNumber().get(item);
-                        temp.append("Total price", tmp_price.toString());
+                        obj.append("Total", tmp_price.toString());
+
+                        list.add(obj);
                     }
+
+                    temp.append("Dishes list", list);
 
                     d.insertOne(temp);
 

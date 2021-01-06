@@ -71,7 +71,7 @@ public class ShellView {
 						}
 //						subViewPane.invalidate();
 
-						String tittle = label.getText().strip();
+						String tittle = label.getText();
 						switch (tittle) {
 
 							case "Menu": {
