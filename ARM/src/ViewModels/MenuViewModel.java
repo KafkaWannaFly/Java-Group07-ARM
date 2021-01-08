@@ -68,7 +68,7 @@ public class MenuViewModel {
 	 * @return Item vừa sửa xong. Nếu k sửa được thì trả về null
 	 * @throws Exception Thông tin lỗi dọc đường (Tên đã tồn tại,...)
 	 */
-	public CompletableFuture<Item> updateItem(String name, Item newValue) throws Exception {
+	public CompletableFuture<Item> updateItemAsync(String name, Item newValue) throws Exception {
 		return CompletableFuture.supplyAsync(new Supplier<Item>() {
 			@Override
 			public Item get() {

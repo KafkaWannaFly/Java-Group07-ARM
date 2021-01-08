@@ -22,6 +22,7 @@ public class ItemView {
 	private JButton orderButton;
 	private JButton editButton;
 	private JButton deleteButton;
+	private JPanel buttonPane;
 
 	private Function<Item, Void> onOrderButtonClick;
 

@@ -54,7 +54,7 @@ public class MenuView {
 		itemsScrollPane.getVerticalScrollBar().setUnitIncrement(scrollSpeed);
 		billItemsScrollPane.getVerticalScrollBar().setUnitIncrement(scrollSpeed);
 
-		this.populateMenuWithItems(20)
+		this.populateMenuWithItems(-1)
 				.thenAccept(new Consumer<Void>() {
 					@Override
 					public void accept(Void unused) {
