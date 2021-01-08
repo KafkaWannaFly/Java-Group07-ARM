@@ -11,11 +11,9 @@ import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -26,7 +24,7 @@ public class MenuView {
 	BillViewModel billViewModel = new BillViewModel();
 
 	private JPanel rootPane;
-	private JTextField textField1;
+	private JTextField searchTextField;
 	private JButton searchButton;
 	private JButton confirmButton;
 	private JPanel billPane;
@@ -45,9 +43,9 @@ public class MenuView {
 
 	private ArrayList<BillItemView> billItemViews = new ArrayList<>();
 
-	public MenuView() {
-//		GridLayout gridBagLayout = new GridLayout(0,1, 0, 0);
-//		billItemsPane.setLayout(new FlowLayout(FlowLayout.LEFT));
+	public MenuView(User user) {
+		this.currentUser = user;
+
 		billItemsPane.setLayout(new BoxLayout(billItemsPane, BoxLayout.Y_AXIS));
 
 		int scrollSpeed = 16;
@@ -55,6 +53,7 @@ public class MenuView {
 		billItemsScrollPane.getVerticalScrollBar().setUnitIncrement(scrollSpeed);
 
 		this.populateMenuWithItems(-1)
+				// Set up order buttons
 				.thenAccept(new Consumer<Void>() {
 					@Override
 					public void accept(Void unused) {
@@ -70,20 +69,79 @@ public class MenuView {
 						setupDefaultSplitPane();
 						setupOrderButtonHandler();
 					}
+				})
+				// Set up extra functions if user is Manager
+				.thenAccept(new Consumer<Void>() {
+					@Override
+					public void accept(Void unused) {
+						validateUserLevel(currentUser);
+					}
 				});
 
 		confirmButton.addMouseListener(this.confirmButtonListener());
+		searchButton.addMouseListener(this.searchButtonListener());
 	}
 
-	public MenuView(User user) {
-		this();
-		this.currentUser = user;
-	}
 	/**
-	 * Create a Bill object then submit to database
+	 * Mở khóa thêm các chức năng dựa trên quyền hạn của User
 	 *
-	 * @return
+	 * @param user
 	 */
+	private void validateUserLevel(User user) {
+		if (!user.isManager()) {
+			return;
+		}
+
+		for (var itemView : itemViews) {
+			itemView.leverageUserLevel(user);
+
+			itemView.setOnItemUpdated(new BiFunction<String, Item, Boolean>() {
+				@Override
+				public Boolean apply(String s, Item item) {
+					try {
+						// Well, we want it run synchronously
+						Item updatedItem = menuViewModel.updateItemAsync(s, item).get();
+						if (updatedItem == null) {
+							return false;
+						}
+						else {
+							return true;
+						}
+					} catch (Exception exception) {
+						exception.printStackTrace();
+					}
+					return false;
+				}
+			});
+		}
+	}
+
+	private MouseInputListener searchButtonListener() {
+		return new MouseInputAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String keyword = searchTextField.getText();
+				for(var itemView: itemViews) {
+					if(!itemView.getItemName().toLowerCase(Locale.ROOT).contains(keyword)) {
+						JPanel panel = itemView.getRootPane();
+						panel.invalidate();
+						panel.setVisible(false);
+						panel.validate();
+
+					}
+					else {
+						JPanel panel = itemView.getRootPane();
+						panel.invalidate();
+						panel.setVisible(true);
+						panel.validate();
+					}
+				}
+
+//				onDOMChanged.apply(null);
+			}
+		};
+	}
+
 	private MouseInputListener confirmButtonListener() {
 		return new MouseInputAdapter() {
 			@Override
@@ -112,14 +170,14 @@ public class MenuView {
 							Item item = itemAmountPair.getKey();
 							Integer amount = itemAmountPair.getValue();
 
-							if(amount > 0) {
+							if (amount > 0) {
 								dishesWithNumber.put(item.getName(), amount);
 								dishesWithPrice.put(item.getName(), item.getPrice());
 							}
 						}
 
 						Bill bill = new Bill(dishesWithNumber, dishesWithPrice, null);
-						if(bill.getTotalPrice() == 0) {
+						if (bill.getTotalPrice() == 0) {
 							JOptionPane.showMessageDialog(rootPane,
 									"Nothing to buy ಠ_ಠ");
 							return;
