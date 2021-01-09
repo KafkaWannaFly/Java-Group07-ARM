@@ -12,7 +12,6 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import static com.mongodb.client.model.Filters.*;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -24,7 +23,7 @@ public class UserViewModel {
                 try {
                     MongoDatabase db = ModelManager.getInstance().getDatabase();
                     MongoCollection<Document> userCollection = db.getCollection("User");
-                    Document specificUser = userCollection.find(eq("ID", newUser.getID())).first();
+                    Document specificUser = userCollection.find(Filters.eq("ID", newUser.getID())).first();
 
                     if (specificUser == null) {
                         System.out.println("Can't find user");
