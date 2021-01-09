@@ -140,4 +140,25 @@ public class UserViewModel {
             userCollection.updateOne(query, updateObject);
         }
     }
+
+    public CompletableFuture<Boolean> deleteUserAsync(String userID) {
+        return CompletableFuture.supplyAsync(new Supplier<Boolean>() {
+            @Override
+            public Boolean get() {
+                try {
+                    MongoDatabase db = ModelManager.getInstance().getDatabase();
+                    MongoCollection<Document> userCollection = db.getCollection("User");
+                    Document specificUser = userCollection.find(Filters.eq("ID", userID)).first();
+                    if (specificUser.isEmpty()) {
+                        System.out.println("User not exist");
+                        return false;
+                    }
+                    userCollection.deleteOne(Filters.eq("id", userID));
+                } catch (MongoException e) {
+                    e.printStackTrace();
+                }
+                return true;
+            }
+        });
+    }
 }

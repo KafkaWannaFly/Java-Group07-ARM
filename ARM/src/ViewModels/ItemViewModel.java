@@ -1,7 +1,14 @@
 package ViewModels;
 
 import Models.Item;
+import Models.ModelManager;
+import com.mongodb.BasicDBObject;
+import com.mongodb.MongoException;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import org.apache.commons.io.FilenameUtils;
+import org.bson.Document;
 
 import java.io.File;
 import java.io.FileOutputStream;
