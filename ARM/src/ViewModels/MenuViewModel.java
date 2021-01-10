@@ -59,14 +59,43 @@ public class MenuViewModel {
 		});
 	}
 
-	public CompletableFuture<Item> addItemAsync(Item item) {
-		return null;
+	//Thêm item mới vào database, nếu trùng item hoặc kết nối lỗi, return false
+	public CompletableFuture<Boolean> addItemAsync(Item item) {
+		return CompletableFuture.supplyAsync(new Supplier<Boolean>() {
+			@Override
+			public Boolean get() {
+				try {
+					MongoDatabase db = ModelManager.getInstance().getDatabase();
+					MongoCollection<Document> itemCollection = db.getCollection("Item");
+
+					for (Document t : itemCollection.find()) {
+						String a = t.getString("name");
+						if (item.getName().compareTo(a) == 0)
+							return false;
+					}
+
+					Document temp = new Document();
+					temp.append("type", item.getType());
+					temp.append("name", item.getName());
+					temp.append("price", item.getPrice().toString());
+					temp.append("description", item.getDescription());
+					temp.append("imgPath", item.getImgPath());
+
+					itemCollection.insertOne(temp);
+
+					return true;
+				} catch (Exception exc){
+					exc.printStackTrace();
+					return false;
+				}
+			}
+		});
 	}
 
 	/**
 	 * Cập nhật giá trị mới cho item
-	 * @param name Tên item cần sửa
-	 * @param newValue Giá trị mới
+	 * @param //name Tên item cần sửa
+	 * @param //newValue Giá trị mới
 	 * @return Item vừa sửa xong. Nếu k sửa được thì trả về null
 	 * @throws Exception Thông tin lỗi dọc đường (Tên đã tồn tại,...)
 	 */
@@ -86,7 +115,7 @@ public class MenuViewModel {
 						updateName(newItem.getName(), itemCollection, specificItem);
 						updatePrice(newItem.getPrice(), itemCollection, specificItem);
 						updateDescription(newItem.getDescription(), itemCollection, specificItem);
-						updateImgPath(newItem.getImgPath(), itemCollection, specificItem)
+						updateImgPath(newItem.getImgPath(), itemCollection, specificItem);
 
 					}
 					return true;
