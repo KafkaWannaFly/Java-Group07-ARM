@@ -47,6 +47,10 @@ public class ShellView {
 			menuView = new MenuView(user);
 			membershipView = new MembershipView();
 
+			if(!user.isManager()) {
+				employeesLabel.setEnabled(false);
+				statisticLabel.setEnabled(false);
+			}
 			employeesView = new EmployeesView(user);
 			statisticView = new StatisticView(user);
 			userAccountView = new UserAccountView(user);

@@ -100,30 +100,30 @@ public class MenuViewModel {
 	 * @throws Exception Thông tin lỗi dọc đường (Tên đã tồn tại,...)
 	 */
 
-	public CompletableFuture<Item> updateItemAsync(String name, Item newValue) throws Exception {
-		return CompletableFuture.supplyAsync(new Supplier<Item>() {
+	public CompletableFuture<Boolean> updateItemAsync(String name, Item newValue) throws Exception {
+		return CompletableFuture.supplyAsync(new Supplier<Boolean>() {
 			@Override
 			public Boolean get() {
 				try {
 					MongoDatabase db = ModelManager.getInstance().getDatabase();
 					MongoCollection<Document> itemCollection = db.getCollection("Item");
-					Document specificItem = itemCollection.find(Filters.eq("name", newItem.getName())).first();
+					Document specificItem = itemCollection.find(Filters.eq("name", name)).first();
 
 					if (specificItem == null) {
 						System.out.println("Can't find item");
 					} else {
-						updateType(newItem.getType(), itemCollection, specificItem);
-						updateName(newItem.getName(), itemCollection, specificItem);
-						updatePrice(newItem.getPrice(), itemCollection, specificItem);
-						updateDescription(newItem.getDescription(), itemCollection, specificItem);
-						updateImgPath(newItem.getImgPath(), itemCollection, specificItem);
+						updateType(newValue.getType(), itemCollection, specificItem);
+						updateName(newValue.getName(), itemCollection, specificItem);
+						updatePrice(newValue.getPrice(), itemCollection, specificItem);
+						updateDescription(newValue.getDescription(), itemCollection, specificItem);
+						updateImgPath(newValue.getImgPath(), itemCollection, specificItem);
 
 					}
 					return true;
 				} catch (MongoException e) {
 					e.printStackTrace();
 				}
-				return false;
+				return null;
 			}
 		});
 	}
