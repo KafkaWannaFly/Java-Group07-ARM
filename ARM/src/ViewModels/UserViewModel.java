@@ -1,21 +1,21 @@
 package ViewModels;
 import Models.ModelManager;
+import Models.Salary;
 import Models.User;
 
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
-
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
 import com.mongodb.MongoException;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import static com.mongodb.client.model.Filters.*;
 import org.bson.Document;
-import org.bson.conversions.Bson;
+
+import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 
 public class UserViewModel {
     /**
@@ -49,7 +49,7 @@ public class UserViewModel {
                 try {
                     MongoDatabase db = ModelManager.getInstance().getDatabase();
                     MongoCollection<Document> userCollection = db.getCollection("User");
-                    Document specificUser = userCollection.find(eq("ID", newUser.getID())).first();
+                    Document specificUser = userCollection.find(Filters.eq("ID", newUser.getID())).first();
 
                     if (specificUser == null) {
                         System.out.println("Can't find user");
@@ -165,5 +165,64 @@ public class UserViewModel {
 
             userCollection.updateOne(query, updateObject);
         }
+    }
+
+    public CompletableFuture<Boolean> deleteUserAsync(String userID) {
+        return CompletableFuture.supplyAsync(new Supplier<Boolean>() {
+            @Override
+            public Boolean get() {
+                try {
+                    MongoDatabase db = ModelManager.getInstance().getDatabase();
+                    MongoCollection<Document> userCollection = db.getCollection("User");
+                    Document specificUser = userCollection.find(Filters.eq("ID", userID)).first();
+                    if (specificUser.isEmpty()) {
+                        System.out.println("User not exist");
+                        return false;
+                    }
+                    userCollection.deleteOne(Filters.eq("id", userID));
+                } catch (MongoException e) {
+                    e.printStackTrace();
+                }
+                return true;
+            }
+        });
+    }
+
+    public CompletableFuture<ArrayList> getUsersAsync(String onUsingID){
+        return CompletableFuture.supplyAsync(new Supplier<ArrayList>() {
+            @Override
+            public ArrayList get() {
+                try{
+                    MongoDatabase db = ModelManager.getInstance().getDatabase();
+                    MongoCollection<Document> userCollection = db.getCollection("User");
+
+                    ArrayList<User> usersList = new ArrayList<>();
+                    for(Document u: userCollection.find()){
+                        ArrayList<Salary> s = new ArrayList<>(u.getList("salary", Salary.class));
+
+                        User user = new User(
+                            u.getString("ID"),
+                            u.getString("username"),
+                            u.getString("password"),
+                            u.getString("name"),
+                            u.getString("phoneNumber"),
+                            u.getString("DoB"),
+                            u.getString("gender"),
+                            u.getString("email"),
+                            u.getString("citizenID"),
+                            s
+                        );
+
+                        if (onUsingID.compareTo(user.getID()) != 0)
+                            usersList.add(user);
+                    }
+
+                    return usersList;
+                } catch (Exception exc){
+                    exc.printStackTrace();
+                    return null;
+                }
+            }
+        });
     }
 }

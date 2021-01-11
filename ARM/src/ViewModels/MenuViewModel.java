@@ -4,6 +4,8 @@ import Models.Bill;
 import Models.Item;
 import Models.Menu;
 import Models.ModelManager;
+import com.mongodb.BasicDBObject;
+import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
@@ -57,33 +59,152 @@ public class MenuViewModel {
 		});
 	}
 
-	public CompletableFuture<Item> addItemAsync(Item item) {
-		return null;
+	//Thêm item mới vào database, nếu trùng item hoặc kết nối lỗi, return false
+	public CompletableFuture<Boolean> addItemAsync(Item item) {
+		return CompletableFuture.supplyAsync(new Supplier<Boolean>() {
+			@Override
+			public Boolean get() {
+				try {
+					MongoDatabase db = ModelManager.getInstance().getDatabase();
+					MongoCollection<Document> itemCollection = db.getCollection("Item");
+
+					for (Document t : itemCollection.find()) {
+						String a = t.getString("name");
+						if (item.getName().compareTo(a) == 0)
+							return false;
+					}
+
+					Document temp = new Document();
+					temp.append("type", item.getType());
+					temp.append("name", item.getName());
+					temp.append("price", item.getPrice().toString());
+					temp.append("description", item.getDescription());
+					temp.append("imgPath", item.getImgPath());
+
+					itemCollection.insertOne(temp);
+
+					return true;
+				} catch (Exception exc){
+					exc.printStackTrace();
+					return false;
+				}
+			}
+		});
 	}
 
 	/**
 	 * Cập nhật giá trị mới cho item
-	 * @param name Tên item cần sửa
-	 * @param newValue Giá trị mới
+	 * @param //name Tên item cần sửa
+	 * @param //newValue Giá trị mới
 	 * @return Item vừa sửa xong. Nếu k sửa được thì trả về null
 	 * @throws Exception Thông tin lỗi dọc đường (Tên đã tồn tại,...)
 	 */
+
 	public CompletableFuture<Item> updateItemAsync(String name, Item newValue) throws Exception {
 		return CompletableFuture.supplyAsync(new Supplier<Item>() {
 			@Override
-			public Item get() {
+			public Boolean get() {
 				try {
-					for (Item i : menu.getDishList()) {
-						if (i.getName().compareTo(name) == 0)
-							i.replace(newValue);
+					MongoDatabase db = ModelManager.getInstance().getDatabase();
+					MongoCollection<Document> itemCollection = db.getCollection("Item");
+					Document specificItem = itemCollection.find(Filters.eq("name", newItem.getName())).first();
+
+					if (specificItem == null) {
+						System.out.println("Can't find item");
+					} else {
+						updateType(newItem.getType(), itemCollection, specificItem);
+						updateName(newItem.getName(), itemCollection, specificItem);
+						updatePrice(newItem.getPrice(), itemCollection, specificItem);
+						updateDescription(newItem.getDescription(), itemCollection, specificItem);
+						updateImgPath(newItem.getImgPath(), itemCollection, specificItem);
+
 					}
-				} catch(Exception e) {
+					return true;
+				} catch (MongoException e) {
 					e.printStackTrace();
 				}
-				return null;
+				return false;
 			}
-
 		});
+	}
+
+	public void updateType(String newType, MongoCollection<Document> itemCollection, Document document) throws MongoException {
+		if(newType.isEmpty() || newType.isBlank()) {
+			return;
+		}
+		else {
+			BasicDBObject newDocument = new BasicDBObject();
+			newDocument.put("type", newType);
+			BasicDBObject query = new BasicDBObject();
+			query.put("type", document.getString("type"));
+			BasicDBObject updateObject = new BasicDBObject();
+			updateObject.put("$set", newDocument);
+
+			itemCollection.updateOne(query, updateObject);
+		}
+	}
+
+	public void updateName(String newName, MongoCollection<Document> itemCollection, Document document) throws MongoException {
+		if(newName.isEmpty() || newName.isBlank()) {
+			return;
+		}
+		else {
+			BasicDBObject newDocument = new BasicDBObject();
+			newDocument.put("name", newName);
+			BasicDBObject query = new BasicDBObject();
+			query.put("name", document.getString("name"));
+			BasicDBObject updateObject = new BasicDBObject();
+			updateObject.put("$set", newDocument);
+
+			itemCollection.updateOne(query, updateObject);
+		}
+	}
+
+	public void updatePrice(Long newPrice, MongoCollection<Document> itemCollection, Document document) throws MongoException {
+		if(newPrice <= 0) {
+			return;
+		}
+		else {
+			BasicDBObject newDocument = new BasicDBObject();
+			newDocument.put("price", newPrice.toString());
+			BasicDBObject query = new BasicDBObject();
+			query.put("price", document.getString("price"));
+			BasicDBObject updateObject = new BasicDBObject();
+			updateObject.put("$set", newDocument);
+			itemCollection.updateOne(query, updateObject);
+		}
+	}
+
+	public void updateDescription(String newDescription, MongoCollection<Document> itemCollection, Document document) throws MongoException {
+		if(newDescription.isEmpty() || newDescription.isBlank()) {
+			return;
+		}
+		else {
+			BasicDBObject newDocument = new BasicDBObject();
+			newDocument.put("description", newDescription);
+			BasicDBObject query = new BasicDBObject();
+			query.put("description", document.getString("description"));
+			BasicDBObject updateObject = new BasicDBObject();
+			updateObject.put("$set", newDocument);
+
+			itemCollection.updateOne(query, updateObject);
+		}
+	}
+
+	public void updateImgPath(String newPath, MongoCollection<Document> itemCollection, Document document) throws MongoException {
+		if(newPath.isEmpty() || newPath.isBlank()) {
+			return;
+		}
+		else {
+			BasicDBObject newDocument = new BasicDBObject();
+			newDocument.put("imgPath", newPath);
+			BasicDBObject query = new BasicDBObject();
+			query.put("imgPath", document.getString("imgPath"));
+			BasicDBObject updateObject = new BasicDBObject();
+			updateObject.put("$set", newDocument);
+
+			itemCollection.updateOne(query, updateObject);
+		}
 	}
 	/** Xóa món ăn thì trả về boolean, xóa được hay không thôi hen?*/
 	public CompletableFuture<Item> deleteItem(String name) {
