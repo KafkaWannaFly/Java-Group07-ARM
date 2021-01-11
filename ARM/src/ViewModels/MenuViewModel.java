@@ -170,7 +170,12 @@ public class MenuViewModel {
 			newDocument.put("price", newPrice.toString());
 			BasicDBObject updateObject = new BasicDBObject();
 			updateObject.put("$set", newDocument);
+
 			itemCollection.updateOne(query, updateObject);
+
+			System.out.println("document: " + document.toJson());
+			System.out.println("query: " + query.toJson());
+			System.out.println("updated: " + updateObject.toJson());
 		}
 	}
 

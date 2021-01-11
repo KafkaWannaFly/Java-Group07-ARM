@@ -51,8 +51,10 @@ public class ShellView {
 				employeesLabel.setEnabled(false);
 				statisticLabel.setEnabled(false);
 			}
-			employeesView = new EmployeesView(user);
-			statisticView = new StatisticView(user);
+			else {
+				employeesView = new EmployeesView(user);
+				statisticView = new StatisticView(user);
+			}
 			userAccountView = new UserAccountView(user);
 
 			// Side bar navigation
@@ -81,6 +83,12 @@ public class ShellView {
 			@Override
 			public Void apply(JLabel jLabel) {
 				for (JLabel label : categoryLabels) {
+					if(!currentUser.isManager()) {
+						if(label.getText().equals("Employees") || label.getText().equals("Statistic")) {
+							continue;
+						}
+					}
+
 					if (label != jLabel) {
 						label.setBackground(defaultBackgroundColor);
 						label.setForeground(defaultFontColor);

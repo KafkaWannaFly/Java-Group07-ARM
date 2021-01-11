@@ -1,0 +1,402 @@
+[
+	{
+		"_id": {
+			"$oid": "5fc20749804adfdd3e301266"
+		},
+		"type": "Pizza",
+		"name": "Margherita",
+		"price": "15000000",
+		"description": "Pizza với xốt cà chua và phô mai.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Pizza-Margherita-1.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20848804adfdd3e301267"
+		},
+		"type": "Pizza",
+		"name": "Hawaiian",
+		"price": "150000000000",
+		"description": "Pizza với xốt cà chua, jămbông, thơm và phô mai.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/9c0d81c5-6ef0-4bac-a277-4ecfb22bc7be.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc2092d804adfdd3e301268"
+		},
+		"type": "Pizza",
+		"name": "Tropicana Seafood",
+		"price": "3000000",
+		"description": "Pizza hải sản, thơm, xốt ớt chua ngọt và phô mai.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/c65befc8-0d97-4e8a-8fd7-600148b2c8f3.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20996804adfdd3e301269"
+		},
+		"type": "Pizza",
+		"name": "BBQ Beefy",
+		"price": "5000000",
+		"description": "Pizza với thịt ba chỉ bò và ba rọi xông khói, hành tây xào, cà chua nướng, với xốt BBQ, khoai tây sợi và phô mai.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/12b85dd3-6d85-44da-b785-13ed67a844df.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20a01804adfdd3e30126a"
+		},
+		"type": "Pizza",
+		"name": "Pepperoni",
+		"price": "160000",
+		"description": "Pizza với xúc xích cay, xốt cà chua & phô mai.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/0b081e6d-5b30-49a8-a0fb-99edcee202ce.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20aa2804adfdd3e30126b"
+		},
+		"type": "Appetizer",
+		"name": "Garlic Bread",
+		"price": "80000",
+		"description": "Bánh mì bơ tỏi.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Garlic-Bread.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20b1a804adfdd3e30126d"
+		},
+		"type": "Appetizer",
+		"name": "Garlic Cheese Loaf",
+		"price": "90000",
+		"description": "Bánh mì bơ tỏi nhồi phô mai nướng.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Garlic-Cheese-Loaf.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20b69804adfdd3e30126e"
+		},
+		"type": "Appetizer",
+		"name": "American Fries",
+		"price": "90000",
+		"description": "Khoai tây Mỹ chiên giòn dùng kèm với xốt tương cà & mayonnaise.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-American-Fries.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20b9b804adfdd3e30126f"
+		},
+		"type": "Appetizer",
+		"name": "Calamari Rings",
+		"price": "180000",
+		"description": "Mực tươi thái vòng tẩm bột chiên vàng, dùng kèm xốt Thousand Island.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Calamari-Rings.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20bc9804adfdd3e301270"
+		},
+		"type": "Platter",
+		"name": "Starter Platter",
+		"price": "420000",
+		"description": "Đĩa tổng hợp gồm: Sườn nướng, khoai tây múi chiên giòn, mực tẩm bột chiên, cánh gà nướng, hành vòng tẩm bột chiên & bánh mỳ bơ tỏi.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Starter-Platter.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20bed804adfdd3e301271"
+		},
+		"type": "Platter",
+		"name": "Meat Lover's Platter",
+		"price": "450000",
+		"description": "Đĩa nướng tổng hợp gồm: cánh gà, xúc xích Đức, bò nhập khẩu xiên que, 4 miếng sườn, bánh mỳ bơ tỏi nhồi phô mai, khoai tây múi chiên giòn.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Meat-Lover-Combo.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20c11804adfdd3e301272"
+		},
+		"type": "Salad",
+		"name": "Caesar Salad",
+		"price": "150000",
+		"description": "Salát với xà lách thái nhỏ, bánh mỳ nướng, thịt ba chỉ xông khói, trứng chần, trộn xốt kem và phô mai Parmesan.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Caesar-Salad-1.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20c38804adfdd3e301273"
+		},
+		"type": "Salad",
+		"name": "Garden Green Salad",
+		"price": "110000",
+		"description": "Xà lách, cà chua, dưa leo, hành tây, trộn xốt dầu giấm đặc biệt của Al Fresco’s.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Green-Garden-Salad-1.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20c68804adfdd3e301275"
+		},
+		"type": "Salad",
+		"name": "Chef's Special Salad",
+		"price": "170000",
+		"description": "Xà lách trộn xốt kem, phủ thịt gà nướng, bơ trái, xoài và phô mai Parmesan.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Chefs-Special-Salad-1.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20c87804adfdd3e301276"
+		},
+		"type": "Salad",
+		"name": "Chef's Special Salad",
+		"price": "170000",
+		"description": "Xà lách trộn xốt kem, phủ thịt gà nướng, bơ trái, xoài và phô mai Parmesan.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Chefs-Special-Salad-1.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20cf3804adfdd3e301277"
+		},
+		"type": "Pasta",
+		"name": "Spaghetti Seafpood",
+		"price": "200000",
+		"description": "Mỳ Ý sợi dài với hải sản xốt cà chua cay hoặc xốt kem tỏi.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/4e801e9e-3b4e-4c78-9fcd-b76ccbb4c59e.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20d1d804adfdd3e301279"
+		},
+		"type": "Pasta",
+		"name": "Spaghetti Bolognaise",
+		"price": "190000",
+		"description": "Mỳ Ý sợi dài với xốt thịt bò hầm & cà chua.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Spaghetti-Bolognaise-1.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20d41804adfdd3e30127a"
+		},
+		"type": "Pasta",
+		"name": "Fettuccine Carbonarra",
+		"price": "190000",
+		"description": "Mỳ Ý sợi dẹp với jămbông & xốt kem phô mai.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Fettuccine-Carbonara.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20d7e804adfdd3e30127b"
+		},
+		"type": "Ribs & Steak",
+		"name": "Pigmy Platter",
+		"price": "390000",
+		"description": "10 dẻ sườn nhỏ nướng kèm khoai tây múi chiên.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Pygmy-Platter-10pcs-1.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20da2804adfdd3e30127c"
+		},
+		"type": "Ribs & Steak",
+		"name": "Jumbo Ribs",
+		"price": "690000",
+		"description": "10-12 dẻ sườn lớn nướng kèm khoai tây múi chiên.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Jumbo-Ribs.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20df2804adfdd3e30127d"
+		},
+		"type": "Ribs & Steak",
+		"name": "Chef's Sliced Steak",
+		"price": "280000",
+		"description": "Thăn bò Mỹ nhập khẩu nướng. Dùng kèm bắp nướng, khoai tây múi chiên.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Chefs-Sliced-Steak.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20e1f804adfdd3e30127e"
+		},
+		"type": "Ribs & Steak",
+		"name": "NZ Rib Eye Steak",
+		"price": "490000",
+		"description": "Thăn bò New Zealand nướng mềm dùng kèm khoai tây sợi chiên.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-NZ-Rib-Eye-Steak-250gr.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20e4e804adfdd3e30127f"
+		},
+		"type": "Chef's Selection",
+		"name": "Teriyaki Salmon",
+		"price": "280000",
+		"description": "Cá hồi nướng, dùng kèm khoai tây nghiền, rau củ & xốt nước tương Nhật.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Teriyaki-Salmon.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20edd804adfdd3e301280"
+		},
+		"type": "Chef's Selection",
+		"name": "Assorted Chicken Wings",
+		"price": "180000",
+		"description": "2 Cánh gà nướng xốt BBQ, 2 cánh gà nướng phủ xốt ớt cay Jalapeno & 2 cánh gà chiên. Dùng kèm khoai tây sợi chiên.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Assorted-Chicken-Wings.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20f31804adfdd3e301281"
+		},
+		"type": "Chef's Selection",
+		"name": "Beef Fajitas",
+		"price": "280000",
+		"description": "Món cuốn Mêhicô với thịt bò cay tẩm ướp nướng, hành tây, ớt chuông và các loại xốt Mêhicô phục vụ trên đĩa nóng.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Beef-Fajitas.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20f58804adfdd3e301282"
+		},
+		"type": "Chef's Selection",
+		"name": "Chicken Fajitas",
+		"price": "280000",
+		"description": "Món cuốn Mêhicô với thịt bò cay tẩm ướp nướng, hành tây, ớt chuông và các loại xốt Mêhicô phục vụ trên đĩa nóng.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Chicken-Fajitas.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20fc4804adfdd3e301283"
+		},
+		"type": "Buger",
+		"name": "Cheese Burger (Beef)",
+		"price": "190000",
+		"description": "Bơgơ kẹp thịt bò Úc xay, phủ với phô mai Cheddar, xà lách, hành tây và cà chua.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Cheese-Burger-Beef.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc20fe6804adfdd3e301284"
+		},
+		"type": "Buger",
+		"name": "Aussie Burger",
+		"price": "220000",
+		"description": "Bơgơ với thịt bò Úc xay, phủ với phô mai, thịt ba chỉ xông khói, trứng, cà chua, xà lách, củ dền và hành tây xào.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Aussie-Burger.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc21009804adfdd3e301286"
+		},
+		"type": "Buger",
+		"name": "Cheese Burger (Chicken)",
+		"price": "190000",
+		"description": "Bơgơ kẹp ức gà phi lê, phủ với phô mai Cheddar, xà lách, hành tây và cà chua.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Cheese-Burger-Chicken.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc21020804adfdd3e301287"
+		},
+		"type": "Al's Fried Rice",
+		"name": "Combination Fried Rice",
+		"price": "150000",
+		"description": "Cơm chiên tổng hợp gồm thịt bò, thịt gà, mực, jămbông và rau củ.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Combination-Fried-Rice.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc21042804adfdd3e301288"
+		},
+		"type": "Al's Fried Rice",
+		"name": "Seafood Fried Rice",
+		"price": "150000",
+		"description": "Cơm chiên hải sản và rau củ.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/Alfrescos-Seafood-Fried-Rice.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc2109c804adfdd3e30128a"
+		},
+		"type": "Drink",
+		"name": "Coke",
+		"price": "35000",
+		"description": "Nước ngọt Cocacola, tất nhiên rồi!",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/1600401038142Coke330.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc210ce804adfdd3e30128b"
+		},
+		"type": "Drink",
+		"name": "Diet Coke",
+		"price": "35000",
+		"description": "Cũng là Cocacola, nhưng không có đường.",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/1600402146339DietCoke.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc21101804adfdd3e30128c"
+		},
+		"type": "Drink",
+		"name": "Sprite",
+		"price": "35000",
+		"description": "Sụp pờ rai",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/1600401178409Sprite.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc2111b804adfdd3e30128d"
+		},
+		"type": "Drink",
+		"name": "Dasani",
+		"price": "35000",
+		"description": "Nước lọc mắc hơn FamilyMart",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/1600401340138Dasani.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc21146804adfdd3e30128e"
+		},
+		"type": "Drink",
+		"name": "Heineken",
+		"price": "60000",
+		"description": "Open Your World!",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/361f3ce9-5440-4630-a386-9270cba83c45.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc21172804adfdd3e30128f"
+		},
+		"type": "Drink",
+		"name": "Tiger",
+		"price": "50000",
+		"description": "It's Time for a Tiger",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/48d8a0ab-3dcb-4d68-a77b-f99b4a591178.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc21199804adfdd3e301290"
+		},
+		"type": "Fresh Juice",
+		"name": "Lemon Juice",
+		"price": "60000",
+		"description": "Nước chanh",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/1592538472023Lemon%20Juice.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc21241804adfdd3e301291"
+		},
+		"type": "Fresh Juice",
+		"name": "Orange Juice",
+		"price": "60000",
+		"description": "Nước cam",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/faa3d461-0e6d-41d2-b9d6-d56a6c645fa1.jpg"
+	},
+	{
+		"_id": {
+			"$oid": "5fc21251804adfdd3e301292"
+		},
+		"type": "Fresh Juice",
+		"name": "Strawberry Juice",
+		"price": "60000",
+		"description": "Nước dâu",
+		"imgPath": "https://api.alfrescos.com.vn//uploads/images/15c36ba9-34a4-4fac-bc0f-68e5bb949747.jpg"
+	}
+]

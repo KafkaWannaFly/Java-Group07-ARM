@@ -11,6 +11,8 @@ import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.result.DeleteResult;
+import com.mongodb.internal.bulk.DeleteRequest;
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -174,31 +176,35 @@ public class UserViewModel {
                 try {
                     MongoDatabase db = ModelManager.getInstance().getDatabase();
                     MongoCollection<Document> userCollection = db.getCollection("User");
-                    Document specificUser = userCollection.find(Filters.eq("ID", userID)).first();
-                    if (specificUser.isEmpty()) {
-                        System.out.println("User not exist");
-                        return false;
-                    }
-                    userCollection.deleteOne(Filters.eq("id", userID));
+//                    Document specificUser = userCollection.find(Filters.eq("ID", userID)).first();
+//                    if (specificUser.isEmpty()) {
+//                        System.out.println("User not exist");
+//                        return false;
+//                    }
+                    BasicDBObject query = new BasicDBObject();
+                    query.put("ID", userID);
+                    DeleteResult res = userCollection.deleteMany(query);
+                    System.out.println("Affected documents: " + res.getDeletedCount());
+                    return true;
                 } catch (MongoException e) {
                     e.printStackTrace();
                 }
-                return true;
+                return false;
             }
         });
     }
 
-    public CompletableFuture<ArrayList> getUsersAsync(String onUsingID){
-        return CompletableFuture.supplyAsync(new Supplier<ArrayList>() {
+    public CompletableFuture<ArrayList<User>> getUsersAsync(String onUsingID){
+        return CompletableFuture.supplyAsync(new Supplier<ArrayList<User>>() {
             @Override
-            public ArrayList get() {
+            public ArrayList<User> get() {
                 try{
                     MongoDatabase db = ModelManager.getInstance().getDatabase();
                     MongoCollection<Document> userCollection = db.getCollection("User");
 
                     ArrayList<User> usersList = new ArrayList<>();
                     for(Document u: userCollection.find()){
-                        ArrayList<Salary> s = new ArrayList<>(u.getList("salary", Salary.class));
+                        ArrayList<Salary> s = (ArrayList<Salary>)u.get("salary");
 
                         User user = new User(
                             u.getString("ID"),

@@ -41,7 +41,7 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <editable value="true"/>
+                  <editable value="false"/>
                   <font name="Century Gothic" size="28" style="1"/>
                 </properties>
               </component>

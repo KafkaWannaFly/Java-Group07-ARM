@@ -76,6 +76,7 @@ public class ItemView {
 	 */
 	public void leverageUserLevel(User user) {
 		if (!user.isManager()) {
+			this.setTextsEditable(false);
 			return;
 		}
 

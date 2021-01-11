@@ -105,6 +105,12 @@ public class UserAccountView {
 					if(!phoneTF.getText().matches("[0-9]+")) {
 						throw new Exception("Phone is not numbers");
 					}
+					if(citizenIdTF.getText().length() != 9 && citizenIdTF.getText().length() != 11) {
+						throw new Exception("Citizen id length must be 9 or 11");
+					}
+					if(!citizenIdTF.getText().matches("[0-9]+")) {
+						throw new Exception("Citizen id must be number");
+					}
 
 
 					if(passwordTF.getText() == currentUser.getPassword()) {
