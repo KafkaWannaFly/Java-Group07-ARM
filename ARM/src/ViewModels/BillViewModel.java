@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
-class objectInBill extends Document{
+class objectInBill extends Document {
     private String name;
     private Integer amount;
     private Long totalPrice;
@@ -57,7 +57,7 @@ public class BillViewModel {
 
                     Document temp = new Document();
                     temp.append("ID", bill.getBillID());
-                    temp.append("Customer ID", bill.getCustomerID());
+                    temp.append("customerID", bill.getCustomerID());
                     temp.append("Total", bill.getTotalPrice());
 
                     List<String> key = new ArrayList<>(bill.getDishesWithNumber().keySet());
@@ -75,7 +75,7 @@ public class BillViewModel {
                         list.add(obj);
                     }
 
-                    temp.append("Dishes list", list);
+                    temp.append("itemsList", list);
 
                     d.insertOne(temp);
 

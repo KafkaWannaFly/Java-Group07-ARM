@@ -2,9 +2,15 @@ package Models;
 
 import org.bson.Document;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.text.DateFormat;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class Bill extends Document {
 
@@ -15,18 +21,18 @@ public class Bill extends Document {
 	private HashMap<String, Integer> dishesWithNumber = new HashMap<>();
 	private HashMap<String, Long> dishesWithPrice = new HashMap<>();
 	private String billID;
+	private String dateTime;
 	private String customerID;
 	private Long totalPrice;
 
 	public Bill(HashMap<String, Integer> dishesWithNumber,HashMap<String, Long> dishesWithPrice, Customer c) {
-
 		int price = 0;
 		Double VAT = 0.1;
 		/* Lấy thời gian hiện tại */
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now();
-		billID = dtf.format(now);
-
+		dateTime = dtf.format(now);
+		billID = Long.toString(now.toEpochSecond(ZoneOffset.of(dateTime)));
 		/* Kiểm tra thành viên */
 		if(c != null) {
 			customerID = c.getCustomerID();
