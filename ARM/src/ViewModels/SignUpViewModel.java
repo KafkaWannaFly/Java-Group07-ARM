@@ -35,32 +35,12 @@ public class SignUpViewModel {
 					String check_user_name;
 
 					for (Document t : d.find()) {
-							String ID;
-							ID = t.getString("ID");
-							
 							check_user_name = t.getString("username");
 							if (check_user_name.compareTo(user.getUsername()) == 0)
 								return false;
-
-							String[] idGroup = ID.split("-");
-
-							if (Integer.parseInt(idGroup[1]) != count)
-								break;
-
-							if (idGroup[0].compareTo("EMP") == 0)
-								count++;
 						}
 
-					String temp2 = "";
-					if (count < 10)
-						temp2 = "00" + Integer.toString(count);
-					else
-						if (count < 100)
-							temp2 = "0" + Integer.toString(count);
-						else
-							temp2 = Integer.toString(count);
-
-					user.setID("EMP-" + temp2);
+					user.setID("EMP-" + System.currentTimeMillis());
 
 					Document temp = new Document();
 					temp.append("ID", user.getID());

@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.event.MouseInputAdapter;
 import javax.swing.event.MouseInputListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
@@ -79,7 +80,14 @@ public class MenuView {
 				});
 
 		confirmButton.addMouseListener(this.confirmButtonListener());
+
 		searchButton.addMouseListener(this.searchButtonListener());
+		searchTextField.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				searchButton.doClick();
+			}
+		});
 	}
 
 	/**
@@ -100,13 +108,8 @@ public class MenuView {
 				public Boolean apply(String s, Item item) {
 					try {
 						// Well, we want it run synchronously
-						Item updatedItem = menuViewModel.updateItemAsync(s, item).get();
-						if (updatedItem == null) {
-							return false;
-						}
-						else {
-							return true;
-						}
+						Boolean isUpdated = menuViewModel.updateItemAsync(s, item).get();
+						return isUpdated;
 					} catch (Exception exception) {
 						exception.printStackTrace();
 					}
@@ -120,7 +123,7 @@ public class MenuView {
 		return new MouseInputAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String keyword = searchTextField.getText();
+				String keyword = searchTextField.getText().toLowerCase(Locale.ROOT);
 				for(var itemView: itemViews) {
 					if(!itemView.getItemName().toLowerCase(Locale.ROOT).contains(keyword)) {
 						JPanel panel = itemView.getRootPane();

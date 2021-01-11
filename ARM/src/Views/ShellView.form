@@ -50,6 +50,7 @@
             <properties>
               <alignmentX value="0.5"/>
               <background color="-1"/>
+              <enabled value="true"/>
               <font name="Candara" size="24" style="1"/>
               <foreground color="-16777216"/>
               <horizontalAlignment value="0"/>

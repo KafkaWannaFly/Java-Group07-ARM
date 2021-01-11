@@ -76,6 +76,7 @@ public class ItemView {
 	 */
 	public void leverageUserLevel(User user) {
 		if (!user.isManager()) {
+			this.setTextsEditable(false);
 			return;
 		}
 
@@ -87,19 +88,22 @@ public class ItemView {
 	}
 
 	private void setTextsEditable(boolean isEditable) {
-		Component[] components = textPane.getComponents();
-		for (Component component : components) {
-			try {
-				JTextField text = (JTextField) component;
-				if (text != null) {
-					text.setEditable(isEditable);
-				}
-			} catch (Exception exception) {
-//				System.out.println(exception.getMessage());
-//				System.out.println("This exception is made on purpose. We shouldn't worry about :)))");
-			}
+//		Component[] components = textPane.getComponents();
+//		for (Component component : components) {
+//			try {
+//				JTextField text = (JTextField) component;
+//				if (text != null) {
+//					text.setEditable(isEditable);
+//				}
+//			} catch (Exception exception) {
+////				System.out.println(exception.getMessage());
+////				System.out.println("This exception is made on purpose. We shouldn't worry about :)))");
+//			}
+//
+//		}
 
-		}
+//		nameTextField.setEditable(isEditable);
+		priceTextField.setEditable(isEditable);
 	}
 
 	private MouseInputListener editButtonListener() {
