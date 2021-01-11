@@ -112,8 +112,8 @@ public class MenuViewModel {
 					if (specificItem == null) {
 						System.out.println("Can't find item");
 					} else {
-						updateType(newValue.getType(), itemCollection, specificItem);
-						updateName(newValue.getName(), itemCollection, specificItem);
+						updateType(newValue.getType(), newValue.getName(), itemCollection, specificItem);
+//						updateName(newValue.getName(), itemCollection, specificItem);
 						updatePrice(newValue.getPrice(), itemCollection, specificItem);
 						updateDescription(newValue.getDescription(), itemCollection, specificItem);
 						updateImgPath(newValue.getImgPath(), itemCollection, specificItem);
@@ -128,47 +128,46 @@ public class MenuViewModel {
 		});
 	}
 
-	public void updateType(String newType, MongoCollection<Document> itemCollection, Document document) throws MongoException {
+	public void updateType(String newType, String name, MongoCollection<Document> itemCollection, Document document) throws MongoException {
 		if(newType.isEmpty() || newType.isBlank()) {
 			return;
 		}
 		else {
-			BasicDBObject newDocument = new BasicDBObject();
-			newDocument.put("type", newType);
-			BasicDBObject query = new BasicDBObject();
-			query.put("type", document.getString("type"));
-			BasicDBObject updateObject = new BasicDBObject();
-			updateObject.put("$set", newDocument);
-
-			itemCollection.updateOne(query, updateObject);
-		}
-	}
-
-	public void updateName(String newName, MongoCollection<Document> itemCollection, Document document) throws MongoException {
-		if(newName.isEmpty() || newName.isBlank()) {
-			return;
-		}
-		else {
-			BasicDBObject newDocument = new BasicDBObject();
-			newDocument.put("name", newName);
 			BasicDBObject query = new BasicDBObject();
 			query.put("name", document.getString("name"));
+			BasicDBObject newDocument = new BasicDBObject();
+			newDocument.put("type", newType.toString());
 			BasicDBObject updateObject = new BasicDBObject();
 			updateObject.put("$set", newDocument);
-
 			itemCollection.updateOne(query, updateObject);
 		}
 	}
+
+//	public void updateName(String newName, MongoCollection<Document> itemCollection, Document document) throws MongoException {
+//		if(newName.isEmpty() || newName.isBlank()) {
+//			return;
+//		}
+//		else {
+//			BasicDBObject query = new BasicDBObject();
+//			query.put("name", document.getString("name"));
+//			BasicDBObject newDocument = new BasicDBObject();
+//			newDocument.put("name", newName);
+//			BasicDBObject updateObject = new BasicDBObject();
+//			updateObject.put("$set", newDocument);
+//
+//			itemCollection.updateOne(query, updateObject);
+//		}
+//	}
 
 	public void updatePrice(Long newPrice, MongoCollection<Document> itemCollection, Document document) throws MongoException {
 		if(newPrice <= 0) {
 			return;
 		}
 		else {
+			BasicDBObject query = new BasicDBObject();
+			query.put("name", document.getString("name"));
 			BasicDBObject newDocument = new BasicDBObject();
 			newDocument.put("price", newPrice.toString());
-			BasicDBObject query = new BasicDBObject();
-			query.put("price", document.getString("price"));
 			BasicDBObject updateObject = new BasicDBObject();
 			updateObject.put("$set", newDocument);
 			itemCollection.updateOne(query, updateObject);
@@ -180,13 +179,12 @@ public class MenuViewModel {
 			return;
 		}
 		else {
-			BasicDBObject newDocument = new BasicDBObject();
-			newDocument.put("description", newDescription);
 			BasicDBObject query = new BasicDBObject();
-			query.put("description", document.getString("description"));
+			query.put("name", document.getString("name"));
+			BasicDBObject newDocument = new BasicDBObject();
+			newDocument.put("description", newDescription.toString());
 			BasicDBObject updateObject = new BasicDBObject();
 			updateObject.put("$set", newDocument);
-
 			itemCollection.updateOne(query, updateObject);
 		}
 	}
@@ -196,13 +194,12 @@ public class MenuViewModel {
 			return;
 		}
 		else {
-			BasicDBObject newDocument = new BasicDBObject();
-			newDocument.put("imgPath", newPath);
 			BasicDBObject query = new BasicDBObject();
-			query.put("imgPath", document.getString("imgPath"));
+			query.put("name", document.getString("name"));
+			BasicDBObject newDocument = new BasicDBObject();
+			newDocument.put("imgPath", newPath.toString());
 			BasicDBObject updateObject = new BasicDBObject();
 			updateObject.put("$set", newDocument);
-
 			itemCollection.updateOne(query, updateObject);
 		}
 	}

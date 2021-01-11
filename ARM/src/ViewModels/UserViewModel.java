@@ -80,7 +80,7 @@ public class UserViewModel {
             BasicDBObject newDocument = new BasicDBObject();
             newDocument.put("password", hashedPassword);
             BasicDBObject query = new BasicDBObject();
-            query.put("password", document.getString("password"));
+            query.put("ID", document.getString("ID"));
             BasicDBObject updateObject = new BasicDBObject();
             updateObject.put("$set", newDocument);
 
@@ -95,7 +95,7 @@ public class UserViewModel {
             BasicDBObject newDocument = new BasicDBObject();
             newDocument.put("name", newName);
             BasicDBObject query = new BasicDBObject();
-            query.put("name", document.getString("name"));
+            query.put("ID", document.getString("ID"));
             BasicDBObject updateObject = new BasicDBObject();
             updateObject.put("$set", newDocument);
 
@@ -111,7 +111,7 @@ public class UserViewModel {
             BasicDBObject newDocument = new BasicDBObject();
             newDocument.put("phoneNumber", newPhoneNumber);
             BasicDBObject query = new BasicDBObject();
-            query.put("phoneNumber", document.getString("phoneNumber"));
+            query.put("ID", document.getString("ID"));
             BasicDBObject updateObject = new BasicDBObject();
             updateObject.put("$set", newDocument);
 
@@ -127,7 +127,7 @@ public class UserViewModel {
             BasicDBObject newDocument = new BasicDBObject();
             newDocument.put("DoB", newDoB);
             BasicDBObject query = new BasicDBObject();
-            query.put("DoB", document.getString("DoB"));
+            query.put("ID", document.getString("ID"));
             BasicDBObject updateObject = new BasicDBObject();
             updateObject.put("$set", newDocument);
 
@@ -143,7 +143,7 @@ public class UserViewModel {
             BasicDBObject newDocument = new BasicDBObject();
             newDocument.put("gender", newGender);
             BasicDBObject query = new BasicDBObject();
-            query.put("gender", document.getString("gender"));
+            query.put("ID", document.getString("ID"));
             BasicDBObject updateObject = new BasicDBObject();
             updateObject.put("$set", newDocument);
 
@@ -159,7 +159,7 @@ public class UserViewModel {
             BasicDBObject newDocument = new BasicDBObject();
             newDocument.put("email", newEmail);
             BasicDBObject query = new BasicDBObject();
-            query.put("email", document.getString("email"));
+            query.put("ID", document.getString("ID"));
             BasicDBObject updateObject = new BasicDBObject();
             updateObject.put("$set", newDocument);
 
