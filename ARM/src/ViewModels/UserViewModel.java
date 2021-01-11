@@ -2,6 +2,10 @@ package ViewModels;
 import Models.ModelManager;
 import Models.Salary;
 import Models.User;
+
+import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
@@ -14,6 +18,30 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
 public class UserViewModel {
+    /**
+     * Kiểm tra xem managerCredential có đúng là manager thật hay không
+     * Tìm và xóa bỏ ai có id truyền vào
+     * Cho phép tự xóa
+     * Nếu người bị xóa cũng là quản lý thì không cho xóa
+     * Nếu id="Putin" thì tự xóa :)))
+     * @param managerCredential Object của Manager
+     * @param id Thằng sắp ra đảo
+     * @return Kết quả cuộc chia ly
+     */
+    public CompletableFuture<Boolean> deleteUserAsync(User managerCredential, String id) {
+        return null;
+    }
+
+    /**
+     * Kiểm tra xem managerCredential có đúng là manager thật hay không
+     * Trả về danh sách toàn bộ nhân viên các cấp ngoại trừ chính bản thân
+     * @param managerCredential Object của Manager để kiểm tra xem có quyền hay không
+     * @return Danh sách tất cả User
+     */
+    public CompletableFuture<ArrayList<User>> getUsersAsync(User managerCredential) {
+        return null;
+    }
+
     public CompletableFuture<Boolean> updateOneUser(User newUser) {
         return CompletableFuture.supplyAsync(new Supplier<Boolean>() {
             @Override

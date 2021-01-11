@@ -30,6 +30,14 @@ public class ItemViewModel {
 		return this.item;
 	}
 
+	public void setItemName(String name) {
+		this.item.setName(name);
+	}
+
+	public void setItemPrice(String price) {
+		this.item.setPrice(Long.parseLong(price));
+	}
+
 	/**
 	 * Check if image is in local machine
 	 * If not, download

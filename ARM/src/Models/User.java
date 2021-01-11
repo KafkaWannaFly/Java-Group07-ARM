@@ -101,9 +101,12 @@ public class User {
 
 	//Function
 
-	public void ShowInformation() {
-	}
-
-	public void ShowMenu() {
+	/**
+	 * Kiểm tra sơ xem giá trị id có phải của Manager hay không
+	 * @return true/false
+	 */
+	public boolean isManager() {
+		String code = this.ID.split("-")[0];
+		return code.equals("MAN");
 	}
 }
